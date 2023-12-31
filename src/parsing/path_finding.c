@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   path_finding.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/31 13:49:55 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/31 16:00:34 by aautin           ###   ########.fr       */
+/*   Created: 2023/12/31 18:31:03 by aautin            #+#    #+#             */
+/*   Updated: 2023/12/31 18:32:51 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
-int	main(int argc, char **argv)
+int	are_coins_accessible(char **map)
 {
-	(void) argc;
-	(void) argv;
+	if (map)
+		return (1);
+	return (0);
+}
 
+int	is_exit_accessible(char **map)
+{
+	if (map)
+		return (1);
+	return (0);
+}
+
+int	is_player_locked(char **map)
+{
+	if (map)
+		return (1);
 	return (0);
 }
