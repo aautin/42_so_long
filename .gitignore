@@ -1,0 +1,4 @@
+libft/.git
+*.o
+*.a
+so_long
