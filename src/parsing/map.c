@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:10:34 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/31 18:26:17 by aautin           ###   ########.fr       */
+/*   Updated: 2023/12/31 18:39:01 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	is_map_content_valid(int map_fd)
 		free_stab(map);
 		return (0);
 	}
-	if (!is_exit_accessible(map)|| !are_coins_accessible(map))
+	if (!is_exit_accessible(map) || !are_coins_accessible(map))
 	{
 		free_stab(map);
 		return (0);
