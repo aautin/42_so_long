@@ -4,7 +4,11 @@ SRC			=	src/main.c
 
 OBJ			=	$(SRC:.c=.o)
 
-LIB			=	libft.a
+LIBFT		=	libft.a
+
+MLXPATH		= 	/home/aautin/Downloads/mlx
+
+MLXFLG		=	-lXext -lX11
 
 CC			=	cc
 
@@ -14,7 +18,8 @@ RM			=	rm -f
 
 $(NAME)		:	$(OBJ)
 				make lib
-				$(CC) $(OBJ) -o $(NAME) $(LIB)
+				$(CC) $(OBJ) -o $(NAME) $(LIBFT) $(MLXPATH)/libmlx.a \
+				$(MLXPATH)/libmlx_Linux.a $(MLXFLG)
 
 %.o			:	%.c
 				$(CC) $(CFLG) -c $^ -o $@
@@ -25,7 +30,7 @@ all			:	$(NAME)
 
 clean		:
 				$(RM) $(OBJ)
-				$(RM) $(LIB)
+				$(RM) $(LIBFT)
 
 fclean		:	clean
 				$(RM) $(NAME)
@@ -36,7 +41,7 @@ bonus		:	all
 
 lib			:
 				make -C libft
-				mv libft/$(LIB) $(LIB)
+				mv libft/$(LIBFT) $(LIBFT)
 
 libclean	:
 				make clean -C libft
