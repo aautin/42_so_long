@@ -24,7 +24,8 @@ $(NAME)		:	$(OBJ)
 %.o			:	%.c
 				$(CC) $(CFLG) -c $^ -o $@
 
-.PHONY		:	all clean fclean re bonus lib libclean libfclean libre allfcl
+.PHONY		:	all clean fclean re bonus \
+				lib libclean libfclean libre allfcl mlx
 
 all			:	$(NAME)
 
@@ -53,3 +54,6 @@ libre		:
 				make re -C libft
 
 allfcl		:	libfclean fclean
+
+mlx			:
+				make -C $(MLXPATH)
