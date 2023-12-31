@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:10:34 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/31 18:39:01 by aautin           ###   ########.fr       */
+/*   Updated: 2023/12/31 19:04:55 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,6 @@ int	is_map_content_valid(int map_fd)
 	map = ft_split(map_content, '\n');
 	free(map_content);
 	if (is_format_valid(map) == 0 || is_account_valid(map) == 0)
-	{
-		free_stab(map);
-		return (0);
-	}
-	if (!is_player_locked(map))
 	{
 		free_stab(map);
 		return (0);

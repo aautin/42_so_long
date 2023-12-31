@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 18:31:03 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/31 18:32:51 by aautin           ###   ########.fr       */
+/*   Updated: 2023/12/31 19:04:12 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,6 @@ int	are_coins_accessible(char **map)
 }
 
 int	is_exit_accessible(char **map)
-{
-	if (map)
-		return (1);
-	return (0);
-}
-
-int	is_player_locked(char **map)
 {
 	if (map)
 		return (1);

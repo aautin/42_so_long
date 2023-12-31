@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 13:51:38 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/31 18:38:21 by aautin           ###   ########.fr       */
+/*   Updated: 2023/12/31 19:04:18 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 // path_finding.c
 int			are_coins_accessible(char **map);
 int			is_exit_accessible(char **map);
-int			is_player_locked(char **map);
 
 // map.c
 int			is_file_valid(char *map_name);
