@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   coords.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/31 13:49:55 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/31 16:49:37 by aautin           ###   ########.fr       */
+/*   Created: 2024/01/01 17:21:24 by aautin            #+#    #+#             */
+/*   Updated: 2024/01/01 18:11:23 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../includes/so_long.h"
 
-int	main(int argc, char **argv)
+t_coords	get_coords(char **map, char letter)
 {
-	if (argc == 2)
-	{	
-		if (is_map_valid(argv[1]))
+	int	x;
+	int	y;
+
+	y = -1;
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
 		{
-			ft_printf("No error\n");
+			if (map[y][x] == letter)
+				return (init_coords(x, y));
 		}
 	}
-	else
-		ft_printf("Error\nWrong number of arguments\n");
-	return (0);
+	return (init_coords(-1, -1));
+}
+
+t_coords	init_coords(int x_i, int y_i)
+{
+	t_coords	element;
+
+	element.x = x_i;
+	element.y = y_i;
+	return (element);
 }

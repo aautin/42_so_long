@@ -2,7 +2,8 @@ NAME		=	so_long
 
 SRC			=	src/parsing/path_finding.c		\
 				src/parsing/map.c				\
-				src/main/main.c
+				src/coords.c					\
+				src/main.c
 
 OBJ			=	$(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 13:51:38 by aautin            #+#    #+#             */
-/*   Updated: 2023/12/31 19:04:18 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/01 18:54:41 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,28 @@
 # include "/home/aautin/Downloads/mlx/mlx.h"
 # include "/home/aautin/Downloads/mlx/mlx_int.h"
 
-//// PARSING
-// path_finding.c
+typedef struct s_coords
+{
+	int		x;
+	int		y;
+}			t_coords;
+
+// PARSING
+// -> path_finding.c
+int			is_coords_accessible(char **map, t_coords target, t_coords player);
 int			are_coins_accessible(char **map);
 int			is_exit_accessible(char **map);
-
-// map.c
+// -> map.c
 int			is_file_valid(char *map_name);
 int			is_format_valid(char **map);
 int			is_account_valid(char **map);
 int			is_map_content_valid(int map_fd);
 int			is_map_valid(char *map_fl);
 
-//// SO_LONG
+// coords.c
+t_coords	get_coords(char **map, char letter);
+t_coords	init_coords(int x_i, int y_i);
+
 // main.c
 int			main(int argc, char **argv);
 
