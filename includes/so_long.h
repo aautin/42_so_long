@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 13:51:38 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/02 17:48:27 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/02 18:46:12 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ typedef struct s_coords
 
 // PARSING
 // -> path_finding.c
-int			coords_access(char **map, t_coords target, t_coords player);
+int			is_next_to_target(t_coords pos, t_coords target);
+int			try_expand(char **map, t_coords pos);
+int			coords_access(char **map, t_coords target);
 int			are_coins_accessible(char **map);
 int			is_exit_accessible(char **map);
 // -> map.c
