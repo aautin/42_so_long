@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 13:51:38 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/03 17:27:02 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/03 18:26:56 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "/home/aautin/Downloads/mlx/mlx.h"
 # include "/home/aautin/Downloads/mlx/mlx_int.h"
 
+# define ESC 65307
+
 typedef struct s_coords
 {
 	int		x;
@@ -32,14 +34,14 @@ typedef struct s_game
 	t_coords	exit;
 	void		*mlx;
 	void		*window;
-	char		*fl_empty;
-	char		*fl_wall;
-	char		*fl_exit;
-	char		*fl_coin;
-	char		*fl_pl_up;
-	char		*fl_pl_down;
-	char		*fl_pl_left;
-	char		*fl_pl_right;
+	void		*img_empty;
+	void		*img_wall;
+	void		*img_exit;
+	void		*img_coin;
+	void		*img_pl_up;
+	void		*img_pl_down;
+	void		*img_pl_left;
+	void		*img_pl_right;
 	char		**map;
 }				t_game;
 
@@ -57,18 +59,19 @@ int			is_account_valid(char **map);
 int			is_map_content_valid(int map_fd);
 int			is_map_valid(char *map_fl);
 // -> map.c
+void		init_map(t_game *game);
 char		**get_map(char *map_name);
 
 // window.c
 int			key_pressed(int keycode, t_game *game);
 int			close_window(t_game *game);
-void		init_window(t_game *game);
 
 // coords.c
 t_coords	get_coords(char **map, char letter);
 t_coords	init_coords(int x_i, int y_i);
 
 // game.c
+void		define_hooks(t_game *game);
 void		init_game(t_game *game);
 
 // main.c
