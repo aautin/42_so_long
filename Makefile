@@ -1,7 +1,10 @@
 NAME		=	so_long
 
 SRC			=	src/parsing/path_finding.c		\
+				src/parsing/scan_map.c			\
 				src/parsing/map.c				\
+				src/window.c					\
+				src/game.c						\
 				src/coords.c					\
 				src/main.c
 
@@ -15,7 +18,7 @@ MLXFLG		=	-lXext -lX11
 
 CC			=	cc
 
-CFLG		=	-Wall -Werror -Wextra
+CFLG		=	-Wall -Werror -Wextra -g3
 
 RM			=	rm -f
 

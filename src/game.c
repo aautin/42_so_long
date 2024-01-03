@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/03 14:46:30 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/03 15:06:11 by aautin           ###   ########.fr       */
+/*   Created: 2024/01/03 14:55:57 by aautin            #+#    #+#             */
+/*   Updated: 2024/01/03 16:10:43 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../includes/so_long.h"
 
-char	**get_map(char *map_name)
+void	init_game(t_game *game)
 {
-	int		fd;
-	char	*temp_map;
-	char	**map;
-
-	fd = is_file_valid(map_name);
-	if (fd == 0)
-		return (NULL);
-	temp_map = get_file_content(fd);
-	if (temp_map == NULL)
-		return (NULL);
-	map = ft_split(temp_map, '\n');
-	if (map == NULL)
-		return (NULL);
-	free(temp_map);
-	return (map);
+	init_window(game);
 }
