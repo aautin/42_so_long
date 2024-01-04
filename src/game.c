@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:55:57 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/03 18:20:05 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/04 20:22:44 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	init_game(t_game *game)
 	game->mlx = mlx_init();
 	game->window = mlx_new_window(game->mlx, 1280, 720, "so_long");
 	define_hooks(game);
-	init_map(game);
-	mlx_loop(game->mlx);
+	if (init_map(game) == 1)
+		mlx_loop(game->mlx);
+	else
+		close_window(game);
 }

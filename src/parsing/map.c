@@ -6,24 +6,39 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:46:30 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/03 20:34:58 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/04 19:24:39 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	init_map(t_game *game)
+int	init_map(t_game *game)
 {
-	int	width;
-	int	height;
-	width = 0;
-	height = 0;
-	game->img_pl_down = mlx_xpm_file_to_image(game->mlx, "assets/xpm/pl_down.xpm", &width, &height);
-	game->img_empty = mlx_xpm_file_to_image(game->mlx, "assets/xpm/empty0011.xpm", &width, &height);
-	mlx_put_image_to_window(game->mlx, game->window, game->img_empty, 100, 100);
-	mlx_put_image_to_window(game->mlx, game->window, game->img_pl_down, 100, 100);
-	ft_printf("width : %d\n", width);
-	ft_printf("height: %d\n", height);
+	game->map_config = init_blocks(game->map);
+	if (game->map_config == NULL)
+		return (0);
+	else
+		return (1);
+}
+
+int	map_len(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[0][i])
+		i++;
+	return (i);
+}
+
+int	map_width(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
 }
 
 char	**get_map(char *map_name)

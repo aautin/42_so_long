@@ -3,7 +3,9 @@ NAME		=	so_long
 SRC			=	src/parsing/path_finding.c		\
 				src/parsing/scan_map.c			\
 				src/parsing/map.c				\
+				src/block.c						\
 				src/events.c					\
+				src/map_config.c				\
 				src/game.c						\
 				src/coords.c					\
 				src/main.c
