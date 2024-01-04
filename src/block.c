@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:04:17 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/04 20:44:09 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/04 20:52:32 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ t_block	**init_blocks(char **map)
 	t_coords	i;
 
 	map_config = alloc_blocks(map);
+	if (map_config == NULL)
+		return (NULL);
 	i = init_coords(-1, -1);
 	while (map[++i.y])
 	{

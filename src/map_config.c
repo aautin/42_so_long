@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 19:48:47 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/04 20:43:42 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/04 20:50:03 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	define_left_config(t_block *blk, char **map, t_coords i)
 		else
 			blk->left_u = DETACHED;
 		if (map[i.y + 1][i.x] != '1')
-			blk->left_u = STUCK;
+			blk->left_d = STUCK;
 		else
-			blk->left_u = DETACHED;
+			blk->left_d = DETACHED;
 	}
 	else
 	{
@@ -54,9 +54,9 @@ void	define_right_config(t_block *blk, char **map, t_coords i)
 		else
 			blk->right_u = DETACHED;
 		if (map[i.y + 1][i.x] != '1')
-			blk->right_u = STUCK;
+			blk->right_d = STUCK;
 		else
-			blk->right_u = DETACHED;
+			blk->right_d = DETACHED;
 	}
 	else
 	{
