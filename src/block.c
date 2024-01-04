@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:04:17 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/04 20:22:29 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/04 20:44:09 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ t_block	define_block(char **map, t_coords i)
 	define_right_config(&blk, map, i);
 	define_up_config(&blk, map, i);
 	define_down_config(&blk, map, i);
-	(void) i;
 	return (blk);
 }
 
@@ -99,7 +98,7 @@ t_block	**init_blocks(char **map)
 			if (map[i.y][i.x] != '1')
 				map_config[i.y][i.x] = define_block(map, i);
 			else
-				map_config[i.y][i.x] = init_null_block();
+				map_config[i.y][i.x] = init_wall_block();
 		}
 		map_config[i.y][i.x] = init_null_block();
 	}
