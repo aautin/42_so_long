@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:46:30 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/04 19:24:39 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/04 20:55:24 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	init_map(t_game *game)
 	game->map_config = init_blocks(game->map);
 	if (game->map_config == NULL)
 		return (0);
-	else
-		return (1);
+	put_walls(game);
+	return (1);
 }
 
 int	map_len(char **map)

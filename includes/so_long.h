@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 13:51:38 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/04 20:44:22 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/04 21:35:35 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_block
 typedef struct s_game
 {
 	t_block		**map_config;
+	char		**map;
 	t_coords	pl;
 	t_coords	exit;
 	void		*mlx;
@@ -58,7 +59,6 @@ typedef struct s_game
 	void		*img_pl_down;
 	void		*img_pl_left;
 	void		*img_pl_right;
-	char		**map;
 }				t_game;
 
 // PARSING
@@ -97,6 +97,9 @@ void		define_left_config(t_block *blk, char **map, t_coords i);
 void		define_right_config(t_block *blk, char **map, t_coords i);
 void		define_up_config(t_block *blk, char **map, t_coords i);
 void		define_down_config(t_block *blk, char **map, t_coords i);
+
+// put_img.c
+void	put_walls(t_game *game);
 
 // coords.c
 t_coords	get_coords(char **map, char letter);

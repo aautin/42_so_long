@@ -6,6 +6,7 @@ SRC			=	src/parsing/path_finding.c		\
 				src/block.c						\
 				src/events.c					\
 				src/map_config.c				\
+				src/put_img.c					\
 				src/game.c						\
 				src/coords.c					\
 				src/main.c
