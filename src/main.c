@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 13:49:55 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/05 20:05:16 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/05 20:25:46 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 			if (game.map != NULL)
 			{
 				game.map_size = init_coords(map_len(game.map),
-					map_width(game.map));
+						map_width(game.map));
 				game.pl = get_coords(game.map, 'P');
 				game.exit = get_coords(game.map, 'E');
 				init_window(&game);

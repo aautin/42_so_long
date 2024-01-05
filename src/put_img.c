@@ -6,14 +6,13 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 20:55:06 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/04 21:35:06 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/05 20:25:28 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-
 void	put_walls(t_game *game)
 {
-	(void) game;	
+	(void) game;
 }
