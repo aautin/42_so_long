@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 13:51:38 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/04 21:35:35 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/05 20:07:38 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 // mlx
 # include "/home/aautin/Downloads/mlx/mlx.h"
 # include "/home/aautin/Downloads/mlx/mlx_int.h"
+
+# ifndef W_LEN
+#  define W_LEN 200
+# endif
+
+# ifndef W_WIDTH
+#  define W_WIDTH 40
+# endif
 
 # define STUCK 1
 # define DETACHED 0
@@ -46,9 +54,12 @@ typedef struct s_block
 typedef struct s_game
 {
 	t_block		**map_config;
-	char		**map;
 	t_coords	pl;
 	t_coords	exit;
+	t_coords	map_size;
+	t_coords	window_size;
+	char		*img_format;
+	char		**map;
 	void		*mlx;
 	void		*window;
 	void		*img_empty;
@@ -72,7 +83,7 @@ int			is_exit_accessible(char **map);
 int			is_file_valid(char *map_name);
 int			is_format_valid(char **map);
 int			is_account_valid(char **map);
-int			is_map_content_valid(int map_fd);
+int			is_map_content_valid(char *filename);
 int			is_map_valid(char *map_fl);
 // -> map.c
 int			init_map(t_game *game);
@@ -87,7 +98,7 @@ t_block		init_wall_block(void);
 t_block		define_block(char **map, t_coords i);
 t_block		**init_blocks(char **map);
 
-// window.c
+// event.c
 int			key_pressed(int keycode, t_game *game);
 int			close_window(t_game *game);
 
@@ -99,15 +110,17 @@ void		define_up_config(t_block *blk, char **map, t_coords i);
 void		define_down_config(t_block *blk, char **map, t_coords i);
 
 // put_img.c
-void	put_walls(t_game *game);
+void		put_walls(t_game *game);
 
 // coords.c
 t_coords	get_coords(char **map, char letter);
 t_coords	init_coords(int x_i, int y_i);
 
-// game.c
+// window.c
 void		define_hooks(t_game *game);
-void		init_game(t_game *game);
+t_coords	get_screen_size(void);
+void		set_window_size(t_game *game);
+void		init_window(t_game *game);
 
 // main.c
 int			main(int argc, char **argv);

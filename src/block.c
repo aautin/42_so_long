@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:04:17 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/04 20:52:32 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/05 12:52:37 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 t_block	**alloc_blocks(char **map)
 {
-	t_block		**map_config;
+	t_block		**config;
 	t_coords	size;
 	int			line_nb;
 
 	size = init_coords(map_len(map), map_width(map));
-	map_config = (t_block **)malloc((size.y + 1) * sizeof(t_block *));
-	if (map_config == NULL)
+	config = (t_block **)malloc((size.y + 1) * sizeof(t_block *));
+	if (config == NULL)
 		return (NULL);
 	line_nb = 0;
 	while (map[line_nb])
 	{
-		map_config[line_nb] = (t_block *)malloc((size.x + 1) * sizeof(t_block));
-		if (map_config[line_nb] == NULL)
+		config[line_nb] = (t_block *)malloc((size.x + 1) * sizeof(t_block));
+		if (config[line_nb] == NULL)
 		{
-			while (map_config[--line_nb] && line_nb >= 0)
-				free(map_config[line_nb]);
-			free(map_config);
+			while (config[--line_nb] && line_nb >= 0)
+				free(config[line_nb]);
+			free(config);
 			return (NULL);
 		}
 		line_nb++;
 	}
-	map_config[line_nb] = NULL;
-	return (map_config);
+	config[line_nb] = NULL;
+	return (config);
 }
 
 t_block	init_null_block(void)

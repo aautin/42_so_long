@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:46:30 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/04 20:55:24 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/05 18:41:31 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,10 @@ int	map_width(char **map)
 
 char	**get_map(char *map_name)
 {
-	int		fd;
 	char	*temp_map;
 	char	**map;
 
-	fd = is_file_valid(map_name);
-	if (fd == 0)
-		return (NULL);
-	temp_map = get_file_content(fd);
+	temp_map = get_file_content(map_name);
 	if (temp_map == NULL)
 		return (NULL);
 	map = ft_split(temp_map, '\n');
