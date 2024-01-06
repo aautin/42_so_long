@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:04:17 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/06 22:51:29 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/06 23:06:47 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ t_block	define_block(char **map, t_coords i, char flag)
 		blk.up = 0;
 		blk.down = 0;
 	}
-
 	return (blk);
 }
 
