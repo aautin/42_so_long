@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 13:51:38 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/05 20:07:38 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/06 16:37:35 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@
 # define STUCK 1
 # define DETACHED 0
 # define ESC 65307
+# define LEFT 97
+# define RIGHT 100
+# define UP 119
+# define DOWN 115
 
 typedef struct s_coords
 {
@@ -97,6 +101,12 @@ t_block		init_null_block(void);
 t_block		init_wall_block(void);
 t_block		define_block(char **map, t_coords i);
 t_block		**init_blocks(char **map);
+
+// moves.c
+int			go_left(t_game *game);
+int			go_right(t_game *game);
+int			go_up(t_game *game);
+int			go_down(t_game *game);
 
 // event.c
 int			key_pressed(int keycode, t_game *game);

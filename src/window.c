@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:55:57 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/05 20:12:14 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/06 17:13:41 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,17 @@ void	set_window_size(t_game *game)
 	}
 }
 
+int	init_game(t_game *game)
+{
+	
+}
+
 void	init_window(t_game *game)
 {
 	game->mlx = mlx_init();
 	set_window_size(game);
+	if (init_game(game) == 0)
+		close_window(game);
 	game->window = mlx_new_window(game->mlx, game->window_size.x,
 			game->window_size.y, "so_long");
 	ft_printf("map_len      : %d\n", game->map_size.x);

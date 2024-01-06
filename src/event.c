@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 16:10:28 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/05 12:47:52 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/06 16:39:04 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,18 @@
 
 int	key_pressed(int keycode, t_game *game)
 {
-	ft_printf("key_pressed : %d\n", keycode);
 	if (keycode == ESC)
 		close_window(game);
+	else if (keycode == LEFT)
+		go_left(game);
+	else if (keycode == RIGHT)
+		go_right(game);
+	else if (keycode == UP)
+		go_up(game);
+	else if (keycode == DOWN)
+		go_down(game);
+	else
+		ft_printf("key_pressed : %d\n", keycode);
 	return (0);
 }
 

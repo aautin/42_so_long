@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 19:48:47 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/04 20:50:03 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/06 17:00:32 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,12 @@ void	define_right_config(t_block *blk, char **map, t_coords i)
 	}
 }
 
-void	define_up_config(t_block *blk, char **map, t_coords i)
+void	define_up_down_config(t_block *blk, char **map, t_coords i)
 {
 	if (map[i.y - 1][i.x] != '1')
 		blk->up = STUCK;
 	else
 		blk->up = DETACHED;
-}
-
-void	define_down_config(t_block *blk, char **map, t_coords i)
-{
 	if (map[i.y + 1][i.x] != '1')
 		blk->down = STUCK;
 	else
