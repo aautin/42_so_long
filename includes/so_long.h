@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 13:51:38 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/06 16:37:35 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/06 21:06:19 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 
 # define STUCK 1
 # define DETACHED 0
+
+# define PATH_EXT 18
+
 # define ESC 65307
 # define LEFT 97
 # define RIGHT 100
@@ -53,6 +56,7 @@ typedef struct s_block
 	char	right_d;
 	char	down;
 	char	left_d;
+	char	*fl_name;
 }			t_block;
 
 typedef struct s_game
@@ -97,9 +101,8 @@ char		**get_map(char *map_name);
 
 // block.c
 t_block		**alloc_blocks(char **map);
-t_block		init_null_block(void);
-t_block		init_wall_block(void);
-t_block		define_block(char **map, t_coords i);
+char		*get_block_fl_name(t_block blk);
+t_block		define_block(char **map, t_coords i, char flag);
 t_block		**init_blocks(char **map);
 
 // moves.c
@@ -116,11 +119,10 @@ int			close_window(t_game *game);
 void		free_config(t_block **map_config);
 void		define_left_config(t_block *blk, char **map, t_coords i);
 void		define_right_config(t_block *blk, char **map, t_coords i);
-void		define_up_config(t_block *blk, char **map, t_coords i);
-void		define_down_config(t_block *blk, char **map, t_coords i);
+void		define_up_down_config(t_block *blk, char **map, t_coords i);
 
 // put_img.c
-void		put_walls(t_game *game);
+int			print_map(t_game *game);
 
 // coords.c
 t_coords	get_coords(char **map, char letter);
@@ -130,6 +132,7 @@ t_coords	init_coords(int x_i, int y_i);
 void		define_hooks(t_game *game);
 t_coords	get_screen_size(void);
 void		set_window_size(t_game *game);
+int			init_game(t_game *game);
 void		init_window(t_game *game);
 
 // main.c

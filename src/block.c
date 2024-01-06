@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:04:17 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/05 12:52:37 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/06 22:51:29 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,47 +39,83 @@ t_block	**alloc_blocks(char **map)
 	return (config);
 }
 
-t_block	init_null_block(void)
+int	get_fl_name_len(t_block blk)
 {
-	t_block	empty;
+	int	len;
 
-	empty.type = '\0';
-	empty.left = 0;
-	empty.left_u = 0;
-	empty.left_d = 0;
-	empty.right = 0;
-	empty.right_u = 0;
-	empty.right_d = 0;
-	empty.up = 0;
-	empty.down = 0;
-	return (empty);
+	len = 0;
+	if (blk.left)
+		len++;
+	if (blk.left_u)
+		len++;
+	if (blk.up)
+		len++;
+	if (blk.right_u)
+		len++;
+	if (blk.right)
+		len++;
+	if (blk.right_d)
+		len++;
+	if (blk.down)
+		len++;
+	if (blk.left_d)
+		len++;
+	return (len + PATH_EXT);
 }
 
-t_block	init_wall_block(void)
+char	*get_block_fl_name(t_block blk)
 {
-	t_block	wall;
+	char	*fl_name;
+	int		fl_name_len;
 
-	wall.type = '1';
-	wall.left = 0;
-	wall.left_u = 0;
-	wall.left_d = 0;
-	wall.right = 0;
-	wall.right_u = 0;
-	wall.right_d = 0;
-	wall.up = 0;
-	wall.down = 0;
-	return (wall);
+	fl_name_len = get_fl_name_len(blk);
+	fl_name = (char *)malloc((fl_name_len + 1) * sizeof(char));
+	fl_name[0] = '\0';
+	ft_strlcat(fl_name, "assets/xpm_16/", fl_name_len);
+	if (blk.left)
+		ft_strlcat(fl_name, "1", fl_name_len);
+	if (blk.left_u)
+		ft_strlcat(fl_name, "2", fl_name_len);
+	if (blk.up)
+		ft_strlcat(fl_name, "3", fl_name_len);
+	if (blk.right_u)
+		ft_strlcat(fl_name, "4", fl_name_len);
+	if (blk.right)
+		ft_strlcat(fl_name, "5", fl_name_len);
+	if (blk.right_d)
+		ft_strlcat(fl_name, "6", fl_name_len);
+	if (blk.down)
+		ft_strlcat(fl_name, "7", fl_name_len);
+	if (blk.left_d)
+		ft_strlcat(fl_name, "8", fl_name_len);
+	ft_strlcat(fl_name, ".xpm", fl_name_len + 1);
+	return (fl_name);
 }
 
-t_block	define_block(char **map, t_coords i)
+t_block	define_block(char **map, t_coords i, char flag)
 {
 	t_block	blk;
 
-	blk.type = map[i.y][i.x];
-	define_left_config(&blk, map, i);
-	define_right_config(&blk, map, i);
-	define_up_config(&blk, map, i);
-	define_down_config(&blk, map, i);
+	if (flag != '\0' && flag != '1')
+	{
+		blk.type = map[i.y][i.x];
+		define_left_config(&blk, map, i);
+		define_right_config(&blk, map, i);
+		define_up_down_config(&blk, map, i);
+	}
+	else
+	{
+		blk.type = flag;
+		blk.left = 0;
+		blk.left_u = 0;
+		blk.left_d = 0;
+		blk.right = 0;
+		blk.right_u = 0;
+		blk.right_d = 0;
+		blk.up = 0;
+		blk.down = 0;
+	}
+
 	return (blk);
 }
 
@@ -98,11 +134,11 @@ t_block	**init_blocks(char **map)
 		while (map[i.y][++i.x])
 		{
 			if (map[i.y][i.x] != '1')
-				map_config[i.y][i.x] = define_block(map, i);
+				map_config[i.y][i.x] = define_block(map, i, '0');
 			else
-				map_config[i.y][i.x] = init_wall_block();
+				map_config[i.y][i.x] = define_block(map, i, '1');
 		}
-		map_config[i.y][i.x] = init_null_block();
+		map_config[i.y][i.x] = define_block(map, i, '\0');
 	}
 	return (map_config);
 }
