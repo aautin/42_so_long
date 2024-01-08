@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 16:10:28 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/06 16:39:04 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/08 14:18:49 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	key_pressed(int keycode, t_game *game)
 
 int	close_window(t_game *game)
 {
+	free_config(game->map_config, game);
 	mlx_destroy_window(game->mlx, game->window);
 	mlx_destroy_display(game->mlx);
 	free_stab(game->map);
-	free_config(game->map_config);
 	free(game->mlx);
 	exit(0);
 }

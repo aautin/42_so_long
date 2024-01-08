@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:04:17 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/08 12:26:48 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/08 13:52:31 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	get_fl_name_len(t_block blk)
 	return (len + PATH_EXT);
 }
 
-char	*get_block_fl_name(t_block blk)
+char	*get_block_fl_name(t_block blk, char format)
 {
 	char	*fl_name;
 	int		fl_name_len;
@@ -71,7 +71,10 @@ char	*get_block_fl_name(t_block blk)
 	fl_name_len = get_fl_name_len(blk);
 	fl_name = (char *)malloc((fl_name_len + 1) * sizeof(char));
 	fl_name[0] = '\0';
-	ft_strlcat(fl_name, "assets/xpm16/", fl_name_len);
+	if (format == 64)
+		ft_strlcat(fl_name, "assets/xpm64/", fl_name_len);
+	else
+		ft_strlcat(fl_name, "assets/xpm32/", fl_name_len);
 	if (blk.left)
 		ft_strlcat(fl_name, "1", fl_name_len);
 	if (blk.left_u)
@@ -88,6 +91,8 @@ char	*get_block_fl_name(t_block blk)
 		ft_strlcat(fl_name, "7", fl_name_len);
 	if (blk.left_d)
 		ft_strlcat(fl_name, "8", fl_name_len);
+	if (ft_strlen(fl_name) == ft_strlen("assets/xpmXX/"))
+		ft_strlcat(fl_name, "0", fl_name_len);
 	ft_strlcat(fl_name, ".xpm", fl_name_len + 1);
 	return (fl_name);
 }

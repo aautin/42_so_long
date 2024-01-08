@@ -36,7 +36,7 @@ $(NAME)		:	$(OBJ)
 				$(MLXPATH)/libmlx_Linux.a $(MLXFLG)
 
 %.o			:	%.c
-				$(CC) $(CFLG) -c $^ -o $@ -D WDW_LEN=$(SCR_LEN) -D WDW_WIDTH=$(SCR_WIDTH)
+				$(CC) $(CFLG) -c $^ -o $@ -D W_LEN=$(SCR_LEN) -D W_WIDTH=$(SCR_WIDTH)
 
 .PHONY		:	all clean fclean re bonus \
 				lib libclean libfclean libre allfcl mlx

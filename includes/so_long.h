@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 13:51:38 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/06 21:06:19 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/08 14:19:35 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_block
 	char	down;
 	char	left_d;
 	char	*fl_name;
+	void	*img;
 }			t_block;
 
 typedef struct s_game
@@ -66,18 +67,10 @@ typedef struct s_game
 	t_coords	exit;
 	t_coords	map_size;
 	t_coords	window_size;
-	char		*img_format;
+	char		img_format;
 	char		**map;
 	void		*mlx;
 	void		*window;
-	void		*img_empty;
-	void		*img_wall;
-	void		*img_exit;
-	void		*img_coin;
-	void		*img_pl_up;
-	void		*img_pl_down;
-	void		*img_pl_left;
-	void		*img_pl_right;
 }				t_game;
 
 // PARSING
@@ -101,7 +94,7 @@ char		**get_map(char *map_name);
 
 // block.c
 t_block		**alloc_blocks(char **map);
-char		*get_block_fl_name(t_block blk);
+char		*get_block_fl_name(t_block blk, char format);
 t_block		define_block(char **map, t_coords i, char flag);
 t_block		**init_blocks(char **map);
 
@@ -116,7 +109,7 @@ int			key_pressed(int keycode, t_game *game);
 int			close_window(t_game *game);
 
 // map_config.c
-void		free_config(t_block **map_config);
+void		free_config(t_block **map_config, t_game *game);
 void		define_left_config(t_block *blk, char **map, t_coords i);
 void		define_right_config(t_block *blk, char **map, t_coords i);
 void		define_up_down_config(t_block *blk, char **map, t_coords i);
