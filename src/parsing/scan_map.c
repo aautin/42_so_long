@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:10:34 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/03 15:05:57 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/05 18:56:27 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	is_file_valid(char *map_name)
 			ft_printf("(or read_rights problem)\n");
 			return (0);
 		}
-		return (fd);
+		close(fd);
+		return (1);
 	}
 	else
 	{
@@ -92,12 +93,12 @@ int	is_account_valid(char **map)
 	return (1);
 }
 
-int	is_map_content_valid(int map_fd)
+int	is_map_content_valid(char *filename)
 {
 	char	*map_content;
 	char	**map;
 
-	map_content = get_file_content(map_fd);
+	map_content = get_file_content(filename);
 	if (map_content == NULL)
 		return (0);
 	map = ft_split(map_content, '\n');
@@ -118,15 +119,9 @@ int	is_map_content_valid(int map_fd)
 
 int	is_map_valid(char *map_name)
 {
-	int	map_fd;
-
-	map_fd = is_file_valid(map_name);
-	if (map_fd == 0)
+	if (is_file_valid(map_name) == 0)
 		return (0);
-	if (is_map_content_valid(map_fd) == 0)
-	{
-		close(map_fd);
+	if (is_map_content_valid(map_name) == 0)
 		return (0);
-	}
 	return (1);
 }
