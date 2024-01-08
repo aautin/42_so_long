@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:04:17 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/06 23:06:47 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/08 12:26:48 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*get_block_fl_name(t_block blk)
 	fl_name_len = get_fl_name_len(blk);
 	fl_name = (char *)malloc((fl_name_len + 1) * sizeof(char));
 	fl_name[0] = '\0';
-	ft_strlcat(fl_name, "assets/xpm_16/", fl_name_len);
+	ft_strlcat(fl_name, "assets/xpm16/", fl_name_len);
 	if (blk.left)
 		ft_strlcat(fl_name, "1", fl_name_len);
 	if (blk.left_u)
