@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 13:51:38 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/08 14:19:35 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/08 16:27:15 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_block
 	char	left_d;
 	char	*fl_name;
 	void	*img;
+	void	*obj;
 }			t_block;
 
 typedef struct s_game
@@ -121,10 +122,14 @@ int			print_map(t_game *game);
 t_coords	get_coords(char **map, char letter);
 t_coords	init_coords(int x_i, int y_i);
 
+// obj.c
+int			print_objs(t_game *game);
+
 // window.c
 void		define_hooks(t_game *game);
 t_coords	get_screen_size(void);
 void		set_window_size(t_game *game);
+int			init_img(t_game *game, t_coords i);
 int			init_game(t_game *game);
 void		init_window(t_game *game);
 

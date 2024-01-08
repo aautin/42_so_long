@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 19:48:47 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/08 14:19:18 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/08 15:58:08 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	free_config(t_block **map_config, t_game *game)
 		i.x = -1;
 		while (map_config[i.y][++i.x].type)
 		{
-			ft_printf("%s\n", map_config[i.y][i.x].fl_name);
-			free(map_config[i.y][i.x].fl_name);
+			if (map_config[i.y][i.x].type != '1')
+				free(map_config[i.y][i.x].fl_name);
 			mlx_destroy_image(game->mlx, map_config[i.y][i.x].img);
 		}
 		free(map_config[i.y]);

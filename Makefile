@@ -10,6 +10,7 @@ SRC			=	src/parsing/path_finding.c		\
 				src/window.c					\
 				src/coords.c					\
 				src/moves.c						\
+				src/obj.c						\
 				src/main.c
 
 OBJ			=	$(SRC:.c=.o)

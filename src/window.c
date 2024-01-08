@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:55:57 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/08 13:54:37 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/08 16:44:11 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,27 @@ void	set_window_size(t_game *game)
 	}
 }
 
+int	init_img(t_game *game, t_coords i)
+{
+	if (game->map_config[i.y][i.x].type != '1')
+	{
+		game->map_config[i.y][i.x].fl_name = get_block_fl_name(
+				game->map_config[i.y][i.x], game->img_format);
+		if (game->map_config[i.y][i.x].fl_name == NULL)
+			return (0);
+	}
+	else
+	{
+		if (game->img_format == 64)
+			game->map_config[i.y][i.x].fl_name = "assets/xpm64/w.xpm";
+		else
+			game->map_config[i.y][i.x].fl_name = "assets/xpm32/w.xpm";
+		if (game->map_config[i.y][i.x].fl_name == NULL)
+			return (0);
+	}
+	return (1);
+}
+
 int	init_game(t_game *game)
 {
 	t_coords	i;
@@ -44,22 +65,8 @@ int	init_game(t_game *game)
 		i.x = -1;
 		while (game->map_config[i.y][++i.x].type)
 		{
-			if (game->map_config[i.y][i.x].type != '1')
-			{
-				game->map_config[i.y][i.x].fl_name = get_block_fl_name(
-						game->map_config[i.y][i.x], game->img_format);
-				if (game->map_config[i.y][i.x].fl_name == NULL)
-					return (0);
-			}
-			else
-			{
-				if (game->img_format == 64)
-					game->map_config[i.y][i.x].fl_name = "assets/xpm64/w.xpm";
-				else
-					game->map_config[i.y][i.x].fl_name = "assets/xpm32/w.xpm";
-				if (game->map_config[i.y][i.x].fl_name == NULL)
-					return (0);
-			}
+			if (init_img(game, i) == 0)
+				return (0);
 		}
 	}
 	return (1);
@@ -81,7 +88,7 @@ void	init_window(t_game *game)
 	define_hooks(game);
 	if (init_map(game) == 1)
 	{
-		if (init_game(game) == 0 || print_map(game) == 0)
+		if (init_game(game) == 0 || print_map(game) == 0 || print_objs(game) == 0)
 			close_window(game);
 		mlx_loop(game->mlx);
 	}
