@@ -1,50 +1,82 @@
-NAME		:=	so_long
+NAME			:=	so_long
 
-INC_PATH	:=	includes
+INC_PATH		:=	includes
 
-LIB_PATH	:=	libft
-LIB_FILE	:=	libft.a
-LIB			:=	$(addprefix $(LIB_PATH)/,$(LIB_FILE))
+LIB_PATH		:=	libft
+LIB_FILE		:=	libft.a
+LIB				:=	$(addprefix $(LIB_PATH)/,$(LIB_FILE))
+INC_LIB			:=	-L $(LIB_PATH) -l ft
 
-SRC_PATH	:=	src
-SRC_FILES	:=	main.c
-SRC			:=	$(addprefix $(SRC_PATH)/,$(SRC_FILES))
+MLX_TGZ			:=	mlx.tgz
+MLX				:=	mlx
+MLX_LIB			:=	$(MLX)/libmlx.a
 
-OBJ_PATH	:=	obj
-OBJ_FILES	:=	$(SRC_FILES:.c=.o)
-OBJ			:=	$(addprefix $(OBJ_PATH)/,$(OBJ_FILES))
+SRC_PATH		:=	src
+SRC_FILES		:=	main.c
+SRC				:=	$(addprefix $(SRC_PATH)/,$(SRC_FILES))
 
-RM			:=	rm -f
-CC_FLGS		:=	cc -Wall -Werror -Wextra -g3
+OBJ_PATH		:=	obj
+OBJ_FILES		:=	$(SRC_FILES:.c=.o)
+OBJ				:=	$(addprefix $(OBJ_PATH)/,$(OBJ_FILES))
 
-.PHONY		:	all clean fclean re
+RM				:=	rm -f
+CC_FLGS			:=	cc -Wall -Werror -Wextra -g3
 
+.PHONY			:	all clean fclean re
 
+all				:	$(NAME)
 
-$(OBJ_PATH)	:
-				@echo $(RED) MSG="uwyer"
+$(NAME)			:	$(LIB) $(MLX_LIB) $(OBJ_PATH) $(OBJ)
+					@sleep 0.2
+					@echo -n "$(GREEN)"
+					@$(CC_FLGS) $(OBJ) -o $(NAME) $(INC_LIB)
+					@echo $@ "has been created !$(NO_COLOR)"
 
-$(NAME)		:	$(LIB) $(OBJ)
-				$(CC_FLGS) -c $(NAME) -o $(OBJ)
+$(MLX_LIB)		:	$(MLX)
+					@sleep 0.1
+					@echo "$(BLUE)Compiling the mlx...$(NO_COLOR)"
+					@make --no-print-directory -C mlx
 
-clean		:
-				@sleep 0.1
-				@echo -n $(RED)
-				@$(RM) $(OBJ)
-				@echo "Deleting objects files..." $(NO_COLOR)
+$(MLX)			:	$(MLX_TGZ)
+					@sleep 0.1
+					@echo "$(YELLOW)Extracting the mlx, creating the mlx...$(NO_COLOR)"
+					@tar -x -f $(MLX_TGZ) && mv minilibx-linux $(MLX)
 
-fclean		:	clean
-				@sleep 0.1
-				@echo -n $(RED)
-				@$(RM) $(NAME) $(LIB)
-				@echo "Deleting so_long and the libft.a..." $(NO_COLOR)
+$(OBJ_PATH)/%.o	:	$(SRC_PATH)/%.c
+					@sleep 0.1
+					@echo "$(BLUE)Compiling $@$(NO_COLOR)"
+					@$(CC_FLGS) -c $< -o $@ -I $(INC_PATH)
 
-NO_COLOR		:=	"\033[0m"
-BLACK			:=	"\033[0;30m"
-BLUE			:=	"\033[0;34m"
-GREEN			:=	"\033[0;32m"
-CYAN			:=	"\033[0;36m"
-RED				:=	"\033[0;31m"
-PURPLE			:=	"\033[0;35m"
-YELLOW			:=	"\033[0;33m"
-GRAY			:=	"\033[0;37m"
+$(OBJ_PATH)		:
+					@mkdir $@
+
+$(LIB)			:
+					@sleep 0.1
+					@make --no-print-directory -C libft
+					@echo "$(YELLOW)Compiling the libft...$(NO_COLOR)" $(NO_COLOR)
+
+clean			:
+					@sleep 0.1
+					@$(RM) $(OBJ)
+					@echo "$(RED)Deleting objects files...$(NO_COLOR)"
+
+fclean			:	clean
+					@sleep 0.1
+					@$(RM) $(NAME) $(LIB)
+					@echo "$(RED)Deleting so_long and the libft.a...$(NO_COLOR)"
+					@sleep 0.2
+					@$(RM) -r $(MLX)
+					@echo "$(RED)Deleting the mlx folder...$(NO_COLOR)"
+					@sleep 0.3
+
+re				:	fclean all
+
+NO_COLOR		:=	\033[0m
+BLACK			:=	\033[0;30m
+BLUE			:=	\033[0;34m
+GREEN			:=	\033[0;32m
+CYAN			:=	\033[0;36m	
+RED				:=	\033[0;31m
+PURPLE			:=	\033[0;35m
+YELLOW			:=	\033[0;33m
+GRAY			:=	\033[0;37m

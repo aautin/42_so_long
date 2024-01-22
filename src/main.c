@@ -6,8 +6,15 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:41:40 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/21 17:41:53 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/22 19:04:26 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	main(int argc, char const *argv[])
+{
+	(void) argc;
+	(void) argv;
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:42:16 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/21 17:53:57 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/22 18:58:02 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 # define SO_LONG_H
 
 #include "../libft/includes/libft_extended.h"
+#include "../mlx/mlx.h"
+#include "../mlx/mlx_int.h"
 
-#endif SO_LONG_H
+#endif
