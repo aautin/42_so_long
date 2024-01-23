@@ -14,7 +14,8 @@
 
 int	main(int argc, char const *argv[])
 {
-	(void) argc;
-	(void) argv;
+	ft_printf("Number of arguments: %d\n", argc);
+	for (int i = 0; i < argc; i++)
+		ft_printf("Argument[%d]: %s\n", i, argv[i]);
 	return (0);
 }

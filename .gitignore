@@ -3,3 +3,6 @@ libft/.git
 *.a
 so_long
 obj/*.o
+.vscode
+mlx
+*.swp

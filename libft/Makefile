@@ -76,10 +76,10 @@ all			:	$(NAME)
 .PHONY		:	all clean fclean re
 
 clean		:
-				$(RM) $(OBJ) $(OBJ_BONUS)
+				@$(RM) $(OBJ) $(OBJ_BONUS)
 
 fclean		:	clean
-				$(RM) $(NAME)				
+				@$(RM) $(NAME)				
 
 re			:	fclean 
 				make

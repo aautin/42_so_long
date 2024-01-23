@@ -7,9 +7,9 @@ LIB_FILE		:=	libft.a
 LIB				:=	$(addprefix $(LIB_PATH)/,$(LIB_FILE))
 INC_LIB			:=	-L $(LIB_PATH) -l ft
 
-MLX_TGZ			:=	mlx.tgz
+MLX_TGZ			:=	mlx.tgz 
 MLX				:=	mlx
-MLX_LIB			:=	$(MLX)/libmlx.a
+MLX_LIB			:=	$(MLX)/libmlx_Linux.a
 
 SRC_PATH		:=	src
 SRC_FILES		:=	main.c
@@ -22,11 +22,11 @@ OBJ				:=	$(addprefix $(OBJ_PATH)/,$(OBJ_FILES))
 RM				:=	rm -f
 CC_FLGS			:=	cc -Wall -Werror -Wextra -g3
 
-.PHONY			:	all clean fclean re
-
 all				:	$(NAME)
 
-$(NAME)			:	$(LIB) $(MLX_LIB) $(OBJ_PATH) $(OBJ)
+.PHONY			:	all clean fclean re
+
+$(NAME)			:	$(LIB) $(MLX) $(MLX_LIB) $(OBJ_PATH) $(OBJ)
 					@sleep 0.2
 					@echo -n "$(GREEN)"
 					@$(CC_FLGS) $(OBJ) -o $(NAME) $(INC_LIB)
@@ -53,12 +53,15 @@ $(OBJ_PATH)		:
 $(LIB)			:
 					@sleep 0.1
 					@make --no-print-directory -C libft
-					@echo "$(YELLOW)Compiling the libft...$(NO_COLOR)" $(NO_COLOR)
+					@echo "$(YELLOW)Compiling the libft...$(NO_COLOR)"
 
 clean			:
 					@sleep 0.1
 					@$(RM) $(OBJ)
 					@echo "$(RED)Deleting objects files...$(NO_COLOR)"
+					@sleep 0.2
+					@echo "$(RED)Cleaning the libft folder...$(NO_COLOR)"
+					@make clean --no-print-directory -C libft
 
 fclean			:	clean
 					@sleep 0.1
