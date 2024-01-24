@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   coords.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,17 +12,23 @@
 
 #include "so_long.h"
 
-int	main(int argc, char *argv[])
+t_coords	map_size(char **map)
 {
-	t_game	game;
+	t_coords	size;
 
-	if (argc == 2)
-	{
-		game.map = file_to_map(argv[1]);
-		ft_printf("%s is correct\n", argv[1]);
-		(void) game;
-	}
-	else
-		ft_printf("Error\nWrong number of arguments\n");
-	return (0);
+	size = init_coords(0 , 0);
+	while (map[size.y])
+		size.y++;
+	while (map[0][size.x])
+		size.x++;
+	return (size);
+}
+
+t_coords	init_coords(int x, int y)
+{
+	t_coords	coords;
+
+	coords.x = x;
+	coords.y = y;
+	return (coords);
 }

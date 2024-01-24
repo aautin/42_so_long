@@ -42,21 +42,19 @@ static void	check_map_size(char *file_content)
 	size.x = 0;
 	while(file_content[size.x] && file_content[size.x] != '\n')
 		size.x++;
-	i = 0;
+	i = -1;
 	size.y = 0;
-	while (file_content[i])
+	while (file_content[++i])
 	{
 		if (file_content[i] == '\n')
 		{
-			if ((i - size.y) % size.x != 0)
+			if ((i - size.y++) % size.x != 0)
 			{
 				ft_printf("Error\nThe map isn't a rectangle\n");
 				free(file_content);
 				exit(EXIT_FAILURE);
 			}
-			size.y++;
 		}
-		i++;
 	}
 }
 
@@ -119,8 +117,8 @@ static char	**get_map(char *file_content)
 
 char	**file_to_map(char *mapfile)
 {
-	char	*file_content;
-	char	**map;
+	char		*file_content;
+	char		**map;
 
 	check_file(mapfile);
 	file_content = get_file_content(mapfile);
@@ -130,5 +128,6 @@ char	**file_to_map(char *mapfile)
 		exit(EXIT_FAILURE);
 	}
 	map = get_map(file_content);
+	check_map(map);
 	return (map);
 }
