@@ -31,6 +31,12 @@ typedef struct s_game
 	char	**map;
 }	t_game;
 
+/*
+* This function takes as a parameter a map's path/to/file, reads it and
+* returns a dble array of it no erros happens and the map's content is right.
+*
+* Otherwise, an error_msg is printed and exit(EXIT_FAILURE) is executed.
+*/
 char	**file_to_map(char *mapfile);
 
 #endif

@@ -12,7 +12,8 @@ MLX				:=	mlx
 MLX_LIB			:=	$(MLX)/libmlx_Linux.a
 
 SRC_PATH		:=	src
-SRC_FILES		:=	main.c
+SRC_FILES		:=	main.c			\
+					parsing.c
 SRC				:=	$(addprefix $(SRC_PATH)/,$(SRC_FILES))
 
 OBJ_PATH		:=	obj
