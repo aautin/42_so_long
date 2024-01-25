@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:41:40 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/23 21:40:32 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/25 16:42:30 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ char	**set_file_to_map(char *mapfile)
 {
 	char		*file_content;
 	char		**map;
+	t_coords	size;
+	t_coords	i;
 
 	check_file(mapfile);
 	file_content = get_file_content(mapfile);
@@ -132,6 +134,18 @@ char	**set_file_to_map(char *mapfile)
 		exit(EXIT_FAILURE);
 	}
 	map = get_map(file_content);
-	check_map(map);
-	return (map);
+	size = get_map_size(map);
+	i = init_coords(0, 0);
+	while (i.x < size.x || i.y < size.y - 1)
+	{
+		if (map[0][i.x] != '1' || map[size.y - 1][i.x] != '1'
+			|| map[i.y][0] != '1' || map[i.y][size.x - 1] != '1')
+		{
+			free_stab(map);
+			do_msg_exit("Map not closed by ar rectangles of 1 characters");
+		}
+		i.x += i.x < size.x;
+		i.y += i.y < size.y - 1;
+	}
+	return (check_map(map), map);
 }
