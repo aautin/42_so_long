@@ -38,7 +38,7 @@ $(NAME)			:	$(LIB) $(MLX) $(MLX_LIB) $(OBJ_PATH) $(OBJ)
 $(MLX_LIB)		:	$(MLX)
 					@sleep 0.1
 					@echo "$(BLUE)Compiling the mlx...$(NO_COLOR)"
-					@make --no-print-directory -C mlx
+					@make --no-print-directory --silent -C mlx
 
 $(MLX)			:	$(MLX_TGZ)
 					@sleep 0.1

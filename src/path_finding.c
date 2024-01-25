@@ -30,7 +30,7 @@ static int	check_paths(char **map)
 					&& ft_strchr("SC", map[i.y][i.x - 1]) == FALSE
 					&& ft_strchr("SC", map[i.y + 1][i.x]) == FALSE
 					&& ft_strchr("SC", map[i.y - 1][i.x]) == FALSE)
-					return (ft_printf("Error\nThe exit isn't accessible\n"), FAIL);
+					return (ft_printf("Error\nExit isn't accessible\n"), FAIL);
 			}
 		}
 	}
@@ -39,7 +39,7 @@ static int	check_paths(char **map)
 
 static char	**get_map_copy(char **map)
 {
-	char **map_copy;
+	char		**map_copy;
 	t_coords	size;
 	int			i;
 
@@ -81,12 +81,12 @@ static int	try_spread(char **map, t_coords i, t_coords size)
 		map[i.y][i.x - 1] = 'S';
 		spread = 1;
 	}
-	if (i.y + 2 != size.y && (map[i.y + 1][i.x] == '0' || map[i.y + 1][i.x] == 'C'))
+	if (i.y + 2 != size.y && ft_strchr("0C", map[i.y + 1][i.x]) != NULL)
 	{
 		map[i.y + 1][i.x] = 'S';
 		spread = 1;
 	}
-	if (i.x + 2 != size.x && (map[i.y][i.x + 1] == '0' || map[i.y][i.x + 1] == 'C'))
+	if (i.x + 2 != size.x && ft_strchr("0C", map[i.y][i.x + 1]) != NULL)
 	{
 		map[i.y][i.x + 1] = 'S';
 		spread = 1;
@@ -121,14 +121,14 @@ static void	path_finding(char **map)
 	}
 }
 
+// for (int x = 0; map_copy[x]; x++)
+// 	ft_printf("%s\n", map_copy[x]);
 void	check_map(char **map)
 {
-	char **map_copy;
+	char	**map_copy;
 
 	map_copy = get_map_copy(map);
 	path_finding(map_copy);
-	for (int x = 0; map_copy[x]; x++)
-		ft_printf("%s\n", map_copy[x]);
 	if (check_paths(map_copy) == FAIL)
 	{
 		free_stab(map);

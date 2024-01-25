@@ -16,7 +16,7 @@ t_coords	map_size(char **map)
 {
 	t_coords	size;
 
-	size = init_coords(0 , 0);
+	size = init_coords(0, 0);
 	while (map[size.y])
 		size.y++;
 	while (map[0][size.x])

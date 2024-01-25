@@ -40,7 +40,7 @@ static void	check_map_size(char *file_content)
 	int			i;
 
 	size.x = 0;
-	while(file_content[size.x] && file_content[size.x] != '\n')
+	while (file_content[size.x] && file_content[size.x] != '\n')
 		size.x++;
 	i = -1;
 	size.y = 0;
@@ -76,7 +76,7 @@ static void	check_game_elements(char *file_content)
 		if (file_content[i] == 'P')
 			players_nb++;
 		if (file_content[i] == 'C')
-			coins_nb++;	
+			coins_nb++;
 	}
 	if (exits_nb != 1 || players_nb != 1 || coins_nb == 0)
 	{
@@ -90,7 +90,7 @@ static void	check_game_elements(char *file_content)
 static char	**get_map(char *file_content)
 {
 	char	**map;
-	int	i;
+	int		i;
 
 	check_map_size(file_content);
 	i = -1;
