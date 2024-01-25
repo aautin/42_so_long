@@ -26,10 +26,10 @@ static int	check_paths(char **map)
 				return (ft_printf("Error\nA coin isn't accessible\n"), FAIL);
 			if (map[i.y][i.x] == 'E')
 			{
-				if (ft_strchr("SC", map[i.y][i.x + 1]) == FALSE
-					&& ft_strchr("SC", map[i.y][i.x - 1]) == FALSE
-					&& ft_strchr("SC", map[i.y + 1][i.x]) == FALSE
-					&& ft_strchr("SC", map[i.y - 1][i.x]) == FALSE)
+				if (ft_strchr("SP", map[i.y][i.x + 1]) == FALSE
+					&& ft_strchr("SP", map[i.y][i.x - 1]) == FALSE
+					&& ft_strchr("SP", map[i.y + 1][i.x]) == FALSE
+					&& ft_strchr("SP", map[i.y - 1][i.x]) == FALSE)
 					return (ft_printf("Error\nExit isn't accessible\n"), FAIL);
 			}
 		}
@@ -43,7 +43,7 @@ static char	**get_map_copy(char **map)
 	t_coords	size;
 	int			i;
 
-	size = map_size(map);
+	size = get_map_size(map);
 	map_copy = (char **)malloc((size.y + 1) * sizeof(char *));
 	if (map_copy == NULL)
 	{
@@ -66,7 +66,7 @@ static char	**get_map_copy(char **map)
 	return (map_copy[i] = NULL, map_copy);
 }
 
-static int	try_spread(char **map, t_coords i, t_coords size)
+static int	do_spread(char **map, t_coords i, t_coords size)
 {
 	int			spread;
 
@@ -94,13 +94,13 @@ static int	try_spread(char **map, t_coords i, t_coords size)
 	return (spread);
 }
 
-static void	path_finding(char **map)
+static void	do_path_finding(char **map)
 {
 	int			spread;
 	t_coords	i;
 	t_coords	size;
 
-	size = map_size(map);
+	size = get_map_size(map);
 	spread = 1;
 	while (spread == TRUE)
 	{
@@ -113,7 +113,7 @@ static void	path_finding(char **map)
 			{
 				if (map[i.y][i.x] == 'P' || map[i.y][i.x] == 'S')
 				{
-					if (try_spread(map, i, size) == SUCCESS)
+					if (do_spread(map, i, size) == SUCCESS)
 						spread = TRUE;
 				}
 			}
@@ -125,10 +125,10 @@ static void	path_finding(char **map)
 // 	ft_printf("%s\n", map_copy[x]);
 void	check_map(char **map)
 {
-	char	**map_copy;
+	char		**map_copy;
 
 	map_copy = get_map_copy(map);
-	path_finding(map_copy);
+	do_path_finding(map_copy);
 	if (check_paths(map_copy) == FAIL)
 	{
 		free_stab(map);

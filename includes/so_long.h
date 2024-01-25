@@ -38,7 +38,7 @@ typedef struct s_game
 * dble array of it no erros happens and the map's content is right.
 * Otherwise, an error_msg is printed and exit(EXIT_FAILURE) executed.
 */
-char		**file_to_map(char *mapfile);
+char		**set_file_to_map(char *mapfile);
 
 /*
 * Browses into a map and spreads a trace on each of the blocks
@@ -53,7 +53,7 @@ void		check_map(char **map);
 * counts the number of char in the 1st char* until the \0 (size.x)
 * Returns the t_coords result which is the size of the map given.
 */
-t_coords	map_size(char **map);
+t_coords	get_map_size(char **map);
 
 /*
 * Takes two integers (x, y) and assigns them to the t_coords that the

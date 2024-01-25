@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-t_coords	map_size(char **map)
+t_coords	get_map_size(char **map)
 {
 	t_coords	size;
 
