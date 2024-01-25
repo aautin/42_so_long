@@ -1,6 +1,6 @@
 NAME			:=	so_long
 
-INC_PATH		:=	includes
+INC_PATH		:=	inc
 
 LIB_PATH		:=	libft
 LIB_FILE		:=	libft.a

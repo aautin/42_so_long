@@ -6,13 +6,13 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:41:40 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/23 21:40:32 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/25 16:57:42 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	check_paths(char **map)
+static int	are_paths_rights(char **map)
 {
 	t_coords	i;
 
@@ -47,9 +47,8 @@ static char	**get_map_copy(char **map)
 	map_copy = (char **)malloc((size.y + 1) * sizeof(char *));
 	if (map_copy == NULL)
 	{
-		ft_printf("Error\nMalloc problem\n");
 		free_stab(map);
-		exit(EXIT_FAILURE);
+		do_msg_exit("Malloc problem");
 	}
 	i = -1;
 	while (map[++i])
@@ -57,10 +56,9 @@ static char	**get_map_copy(char **map)
 		map_copy[i] = ft_strdup(map[i]);
 		if (map_copy == NULL)
 		{
-			ft_printf("Error\nMalloc problem\n");
 			free_stab(map);
 			free_stab(map_copy);
-			exit(EXIT_FAILURE);
+			do_msg_exit("Malloc problem");
 		}
 	}
 	return (map_copy[i] = NULL, map_copy);
@@ -129,7 +127,7 @@ void	check_map(char **map)
 
 	map_copy = get_map_copy(map);
 	do_path_finding(map_copy);
-	if (check_paths(map_copy) == FAIL)
+	if (are_paths_rights(map_copy) == FAIL)
 	{
 		free_stab(map);
 		free_stab(map_copy);

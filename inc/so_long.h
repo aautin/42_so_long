@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:42:16 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/25 16:04:53 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/25 16:58:47 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ t_coords	init_coords(int x, int y);
 * Prints Error\n followed by the msg param and a newline
 * Then it exits with the EXIT_FAILURE status.
 */
-void	do_msg_exit(char *msg);
+void		do_msg_exit(char *msg);
 
 #endif

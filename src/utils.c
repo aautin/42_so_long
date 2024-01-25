@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:52:00 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/25 16:04:40 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/25 16:58:39 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	do_msg_exit(char *msg)
 {
 	ft_printf("Error\n%s\n", msg);
-	exit(EXIT_FAILURE);	
+	exit(EXIT_FAILURE);
 }
