@@ -26,6 +26,10 @@ OBJ				:=	$(addprefix $(OBJ_PATH)/,$(OBJ_FILES))
 RM				:=	rm -f
 CC_FLGS			:=	cc -Wall -Werror -Wextra -g3
 
+LEN		:= $(shell xdpyinfo | grep dim | awk '{print $$2}' | awk -Fx '{print $$1}')
+WID		:= $(shell xdpyinfo | grep dim | awk '{print $$2}' | awk -Fx '{print $$2}')
+MACROS	:= -DSCR_LEN=$(LEN) -DSCR_WID=$(WID)
+
 all				:	$(NAME)
 
 .PHONY			:	all clean fclean re
@@ -33,7 +37,7 @@ all				:	$(NAME)
 $(NAME)			:	$(LIB) $(MLX) $(MLX_LIB) $(OBJ_PATH) $(OBJ)
 					@sleep 0.2
 					@echo -n "$(GREEN)"
-					@$(CC_FLGS) $(OBJ) -o $(NAME) $(INC_LIB)
+					@$(CC_FLGS) $(OBJ) -o $(NAME) $(INC_LIB) 
 					@echo $@ "has been created !$(NO_COLOR)"
 
 $(MLX_LIB)		:	$(MLX)
@@ -49,7 +53,7 @@ $(MLX)			:	$(MLX_TGZ)
 $(OBJ_PATH)/%.o	:	$(SRC_PATH)/%.c
 					@sleep 0.1
 					@echo "$(BLUE)Compiling $@$(NO_COLOR)"
-					@$(CC_FLGS) -c $< -o $@ -I $(INC_PATH)
+					@$(CC_FLGS) -c $< -o $@ -I $(INC_PATH) $(MACROS)
 
 $(OBJ_PATH)		:
 					@mkdir $@

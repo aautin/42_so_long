@@ -17,6 +17,14 @@
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
 
+# ifndef SCR_LEN
+#  define SCR_LEN 500
+# endif
+# ifndef SCR_WID
+#  define SCR_WID 500
+# endif
+
+
 # define TRUE 1
 # define FALSE 0
 # define SUCCESS 1

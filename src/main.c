@@ -16,6 +16,7 @@ int	main(int argc, char *argv[])
 {
 	t_game	game;
 
+	ft_printf("SCR_LEN = %d || SCR_WID = %d\n", SCR_LEN, SCR_WID);
 	if (argc == 2)
 	{
 		game.map = set_file_to_map(argv[1]);
