@@ -23,7 +23,9 @@
 # ifndef SCR_WID
 #  define SCR_WID 500
 # endif
-
+# ifndef IMGS
+#  define IMGS "Error\n"
+# endif
 
 # define TRUE 1
 # define FALSE 0
