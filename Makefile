@@ -16,6 +16,7 @@ SRC_FILES		:=	main.c			\
 					parsing.c		\
 					coords.c		\
 					utils.c			\
+					window.c		\
 					path_finding.c
 SRC				:=	$(addprefix $(SRC_PATH)/,$(SRC_FILES))
 

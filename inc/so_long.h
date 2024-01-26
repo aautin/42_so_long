@@ -44,6 +44,8 @@ typedef struct s_game
 	t_coords	scr_size;
 	char		**map;
 	char		**imgs_name;
+	t_xvar		*mlxvar;
+	t_win_list	*win;
 }	t_game;
 
 /*
