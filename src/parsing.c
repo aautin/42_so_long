@@ -101,7 +101,7 @@ static char	**get_map(char *file_content)
 	return (map);
 }
 
-char	**set_file_to_map(char *mapfile)
+char	**get_map_from_file(char *mapfile)
 {
 	char		*file_content;
 	char		**map;
@@ -115,15 +115,15 @@ char	**set_file_to_map(char *mapfile)
 	map = get_map(file_content);
 	size = get_map_size(map);
 	i = init_coords(0, 0);
-	while (i.x < size.x || i.y < size.y - 1)
+	while (i.x < size.x - 1 || i.y < size.y - 1)
 	{
 		if (map[0][i.x] != '1' || map[size.y - 1][i.x] != '1'
 			|| map[i.y][0] != '1' || map[i.y][size.x - 1] != '1')
 		{
 			free_stab(map);
-			do_msg_exit("Map not closed by ar rectangles of 1 characters");
+			do_msg_exit("Map not closed by a rectangle of 1 characters");
 		}
-		i.x += i.x < size.x;
+		i.x += i.x < size.x - 1;
 		i.y += i.y < size.y - 1;
 	}
 	return (check_map(map), map);

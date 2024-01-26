@@ -40,7 +40,10 @@ typedef struct s_coords
 
 typedef struct s_game
 {
-	char	**map;
+	t_coords	map_size;
+	t_coords	scr_size;
+	char		**map;
+	char		**imgs_name;
 }	t_game;
 
 /*
@@ -48,7 +51,7 @@ typedef struct s_game
 * dble array of it no erros happens and the map's content is right.
 * Otherwise, an error_msg is printed and exit(EXIT_FAILURE) executed.
 */
-char		**set_file_to_map(char *mapfile);
+char		**get_map_from_file(char *mapfile);
 
 /*
 * Browses into a map and spreads a trace on each of the blocks
