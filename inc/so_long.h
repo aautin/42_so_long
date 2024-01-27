@@ -40,8 +40,8 @@ typedef struct s_coords
 
 typedef struct s_game
 {
-	t_coords	map_size;
 	t_coords	scr_size;
+	t_coords	map_size;
 	char		**map;
 	char		**imgs_name;
 	t_xvar		*mlxvar;
@@ -81,5 +81,11 @@ t_coords	init_coords(int x, int y);
 * Then it exits with the EXIT_FAILURE status.
 */
 void		do_msg_exit(char *msg);
+
+/*
+* Inits the game->mlxvar and game->win variables. If an init goes
+* wrong, frees malloc vars of t_game and do_msg_exit(PERSO MSG)
+*/
+void		set_window(t_game *game);
 
 #endif

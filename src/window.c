@@ -12,3 +12,20 @@
 
 #include "so_long.h"
 
+void	set_window(t_game *game)
+{
+	game->mlxvar = mlx_init();
+	if (game->mlxvar == NULL)
+	{
+		free_stab(game->map);
+		do_msg_exit("Mlx's init issue");
+	}
+	game->win = mlx_new_window(game->mlxvar, game->map_size.x * 32,
+			game->map_size.y * 32, "WIN");
+	if (game->mlxvar == NULL)
+	{
+		free_stab(game->map);
+		free(game->mlxvar);
+		do_msg_exit("Window's init issue");
+	}
+}

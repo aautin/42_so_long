@@ -5,11 +5,13 @@ INC_PATH		:=	inc
 LIB_PATH		:=	libft
 LIB_FILE		:=	libft.a
 LIB				:=	$(addprefix $(LIB_PATH)/,$(LIB_FILE))
-INC_LIB			:=	-L $(LIB_PATH) -l ft
+INC_LIB			:=	-L $(LIB_PATH) -lft
 
-MLX_TGZ			:=	mlx.tgz 
-MLX				:=	mlx
-MLX_LIB			:=	$(MLX)/libmlx_Linux.a
+MLX_TGZ			:=	mlx.tgz
+MLX_PATH		:=	mlx
+MLX_FILE		:=	libmlx.a
+MLX				:=	$(addprefix $(MLX)/, $(MLX_FILE))
+INC_MLX			:=	-L $(MLX_PATH) -lmlx -lXext -lX11
 
 SRC_PATH		:=	src
 SRC_FILES		:=	main.c			\
@@ -36,21 +38,21 @@ all				:	$(NAME)
 
 .PHONY			:	all clean fclean re
 
-$(NAME)			:	$(LIB) $(MLX) $(MLX_LIB) $(OBJ_PATH) $(OBJ)
+$(NAME)			:	$(LIB) $(MLX_PATH) $(MLX) $(OBJ_PATH) $(OBJ)
 					@sleep 0.2
 					@echo -n "$(GREEN)"
-					@$(CC_FLGS) $(OBJ) -o $(NAME) $(INC_LIB) 
+					@$(CC_FLGS) $(OBJ) -o $(NAME) $(INC_LIB) $(INC_MLX)
 					@echo $@ "has been created !$(NO_COLOR)"
 
-$(MLX_LIB)		:	$(MLX)
+$(MLX)			:	$(MLX_PATH)
 					@sleep 0.1
 					@echo "$(BLUE)Compiling the mlx...$(NO_COLOR)"
 					@make --no-print-directory --silent -C mlx
 
-$(MLX)			:	$(MLX_TGZ)
+$(MLX_PATH)		:	$(MLX_TGZ)
 					@sleep 0.1
 					@echo "$(YELLOW)Extracting the mlx, creating the mlx...$(NO_COLOR)"
-					@tar -x -f $(MLX_TGZ) && mv minilibx-linux $(MLX)
+					@tar -x -f $(MLX_TGZ) && mv minilibx-linux $(MLX_PATH)
 
 $(OBJ_PATH)/%.o	:	$(SRC_PATH)/%.c
 					@sleep 0.1
@@ -78,7 +80,7 @@ fclean			:	clean
 					@$(RM) $(NAME) $(LIB)
 					@echo "$(RED)Deleting so_long and the libft.a...$(NO_COLOR)"
 					@sleep 0.2
-					@$(RM) -r $(MLX)
+					@$(RM) -r $(MLX_PATH)
 					@echo "$(RED)Deleting the mlx folder...$(NO_COLOR)"
 					@sleep 0.3
 
