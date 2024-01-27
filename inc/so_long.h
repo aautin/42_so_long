@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:42:16 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/25 16:58:47 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/27 15:19:50 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,18 @@ typedef struct s_coords
 	int	y;
 }	t_coords;
 
+typedef struct s_image
+{
+	t_img	*img;
+	char	*name;
+}	t_image;
+
 typedef struct s_game
 {
 	t_coords	scr_size;
 	t_coords	map_size;
 	char		**map;
-	char		**imgs_name;
+	t_image		*imgs;
 	t_xvar		*mlxvar;
 	t_win_list	*win;
 }	t_game;
@@ -87,5 +93,17 @@ void		do_msg_exit(char *msg);
 * wrong, frees malloc vars of t_game and do_msg_exit(PERSO MSG)
 */
 void		set_window(t_game *game);
+
+/*
+* To complete...
+*/
+void		set_imgs(t_game *game);
+
+/*
+* Used to free the content of t_game type:
+*	-Destroy game->win	-Destroy display game->mlxvar
+*	-Free game->mlxvar	-Free game->map
+*/
+void		do_free_game(t_game *game);
 
 #endif

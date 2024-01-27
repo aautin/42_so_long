@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 15:52:00 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/27 14:52:55 by aautin           ###   ########.fr       */
+/*   Created: 2024/01/27 14:18:45 by aautin            #+#    #+#             */
+/*   Updated: 2024/01/27 14:28:18 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	do_msg_exit(char *msg)
+void	set_imgs(t_game *game)
 {
-	ft_printf("Error\n%s\n", msg);
-	exit(EXIT_FAILURE);
-}
-
-void	do_free_game(t_game *game)
-{
-	mlx_destroy_window(game->mlxvar, game->win);
-	mlx_destroy_display(game->mlxvar);
-	free(game->mlxvar);
-	free_stab(game->map);
+	(void) game;
 }
