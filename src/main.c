@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:41:40 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/27 15:19:23 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/27 17:15:35 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	main(int argc, char *argv[])
 {
 	t_game	game;
 
-	ft_printf("%d\n", 2 < 2 * 0.5);
 	if (argc == 2)
 	{
 		game.map = get_map_from_file(argv[1]);
@@ -46,10 +45,10 @@ int	main(int argc, char *argv[])
 		game.scr_size = init_coords(SCR_LEN, SCR_WID);
 		check_scr_map_compatibility(&game);
 		set_window(&game);
-		set_imgs(&game);
+		init_imgs(&game);
 	}
 	else
 		ft_printf("Error\nWrong number of arguments\n%d", argc);
-	do_free_game(&game);
+	do_free_game(&game, TRUE, TRUE, TRUE);
 	return (0);
 }

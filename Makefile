@@ -19,7 +19,7 @@ SRC_FILES		:=	main.c			\
 					coords.c		\
 					utils.c			\
 					window.c		\
-					image.c		\
+					image.c			\
 					path_finding.c
 SRC				:=	$(addprefix $(SRC_PATH)/,$(SRC_FILES))
 
@@ -32,8 +32,8 @@ CC_FLGS			:=	cc -Wall -Werror -Wextra -g3
 
 LEN		:= $(shell xdpyinfo | grep dim | awk '{print $$2}' | awk -Fx '{print $$1}')
 WID		:= $(shell xdpyinfo | grep dim | awk '{print $$2}' | awk -Fx '{print $$2}')
-IMGS	:= $(shell readlink -f sprites/* sprites/*/* | grep .xpm)
-MACROS	:= -DSCR_LEN=$(LEN) -DSCR_WID=$(WID) -DIMGS=\""$(IMGS)\""
+IMGS	:= "$(shell readlink -f sprites/* sprites/*/* | grep .xpm)"
+MACROS	:= -DSCR_LEN=$(LEN) -DSCR_WID=$(WID) -DIMGS="\$(IMGS)\"
 
 all				:	$(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:52:00 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/27 14:52:55 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/27 17:17:05 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,16 @@ void	do_msg_exit(char *msg)
 	exit(EXIT_FAILURE);
 }
 
-void	do_free_game(t_game *game)
+void	do_free_game(t_game *game, char freemlx, char freeimgs, char freemap)
 {
-	mlx_destroy_window(game->mlxvar, game->win);
-	mlx_destroy_display(game->mlxvar);
-	free(game->mlxvar);
-	free_stab(game->map);
+	if (freemap == TRUE)
+		free_stab(game->map);
+	if (freeimgs == TRUE)
+		(void) freeimgs;
+	if (freemlx == TRUE)
+	{
+		mlx_destroy_window(game->mlxvar, game->win);
+		mlx_destroy_display(game->mlxvar);
+		free(game->mlxvar);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:42:16 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/27 15:19:50 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/27 17:19:24 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ typedef struct s_game
 	t_coords	scr_size;
 	t_coords	map_size;
 	char		**map;
+	int			imgs_nb;
 	t_image		*imgs;
 	t_xvar		*mlxvar;
-	t_win_list	*win;
+	void		*win;
 }	t_game;
 
 /*
@@ -97,13 +98,15 @@ void		set_window(t_game *game);
 /*
 * To complete...
 */
-void		set_imgs(t_game *game);
+void		init_imgs(t_game *game);
 
 /*
 * Used to free the content of t_game type:
-*	-Destroy game->win	-Destroy display game->mlxvar
-*	-Free game->mlxvar	-Free game->map
+* -freemlx == TRUE: mlxvar and win
+* -freemap == TRUE: map
+* -freeimgs == TRUE: imgs->img & ->name
 */
-void		do_free_game(t_game *game);
+void		do_free_game(t_game *game, char freemlx,
+				char freeimgs, char freemap);
 
 #endif
