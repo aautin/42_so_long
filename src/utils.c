@@ -20,10 +20,21 @@ void	do_msg_exit(char *msg)
 
 void	do_free_game(t_game *game, char freemlx, char freeimgs, char freemap)
 {
+	int	i;
+
 	if (freemap == TRUE)
 		free_stab(game->map);
 	if (freeimgs == TRUE)
-		(void) freeimgs;
+	{
+		i = 0;
+		while (i < game->imgs_nb)
+		{
+			free(game->imgs[i].name);
+			mlx_destroy_image(game->mlxvar, game->imgs[i].obj);
+			i++;
+		}
+		free(game->imgs);
+	}
 	if (freemlx == TRUE)
 	{
 		mlx_destroy_window(game->mlxvar, game->win);

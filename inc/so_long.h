@@ -31,6 +31,7 @@
 # define FALSE 0
 # define SUCCESS 1
 # define FAIL 0
+# define EOT 3
 
 typedef struct s_coords
 {
@@ -40,7 +41,7 @@ typedef struct s_coords
 
 typedef struct s_image
 {
-	t_img	*img;
+	t_img	*obj;
 	char	*name;
 }	t_image;
 

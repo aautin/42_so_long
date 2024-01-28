@@ -42,7 +42,7 @@ all				:	$(NAME)
 $(NAME)			:	$(LIB) $(MLX_PATH) $(MLX) $(OBJ_PATH) $(OBJ)
 					@sleep 0.2
 					@echo -n "$(GREEN)"
-					@$(CC_FLGS) $(OBJ) -o $(NAME) $(INC_LIB) $(INC_MLX)
+					@$(CC_FLGS) $(OBJ) -o $(NAME) $(INC_LIB) $(INC_MLX) $(MACROS)
 					@echo $@ "has been created !$(NO_COLOR)"
 
 $(MLX)			:	$(MLX_PATH)
