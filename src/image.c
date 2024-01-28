@@ -29,7 +29,7 @@ static void	set_img_name(t_game *game, char **imgs_name, int len, int i)
 	int	fd;
 
 	fd = open(ft_strnstr(imgs_name[i], "sprites", len), O_RDONLY);
-	if (fd != 1)
+	if (fd != -1)
 	{
 		close(fd);
 		game->imgs[i].name = ft_strnstr(imgs_name[i], "sprites", len);

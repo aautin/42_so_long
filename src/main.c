@@ -46,9 +46,9 @@ int	main(int argc, char *argv[])
 		check_scr_map_compatibility(&game);
 		set_window(&game);
 		init_imgs(&game);
+		do_free_game(&game, TRUE, TRUE, TRUE);
 	}
 	else
 		ft_printf("Error\nWrong number of arguments\n%d", argc);
-	do_free_game(&game, TRUE, TRUE, TRUE);
 	return (0);
 }
