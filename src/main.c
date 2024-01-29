@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:41:40 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/27 17:15:35 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/29 20:42:21 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ int	main(int argc, char *argv[])
 		check_scr_map_compatibility(&game);
 		set_window(&game);
 		init_imgs(&game);
+		put_map(&game);
+		while (1)
+			;
 		do_free_game(&game, TRUE, TRUE, TRUE);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:42:16 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/27 17:19:24 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/29 20:49:57 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,10 @@ void		init_imgs(t_game *game);
 */
 void		do_free_game(t_game *game, char freemlx,
 				char freeimgs, char freemap);
+
+/*
+* To complete...
+*/
+void	put_map(t_game *game);
 
 #endif

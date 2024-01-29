@@ -20,6 +20,7 @@ SRC_FILES		:=	main.c			\
 					utils.c			\
 					window.c		\
 					image.c			\
+					put_map.c		\
 					path_finding.c
 SRC				:=	$(addprefix $(SRC_PATH)/,$(SRC_FILES))
 
