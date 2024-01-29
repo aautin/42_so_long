@@ -18,7 +18,7 @@ static void	check_file(char *mapfile)
 	int	fd;
 
 	len = ft_strlen(mapfile);
-	if (ft_strncmp(mapfile + (len - 4), ".ber", len) != 0)
+	if (len < 4 || ft_strncmp(mapfile + (len - 4), ".ber", len) != 0)
 		do_msg_exit("The extension of the mapfile has to be '.ber'");
 	fd = open(mapfile, O_RDONLY);
 	if (fd == -1)

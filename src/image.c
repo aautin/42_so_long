@@ -24,20 +24,21 @@ static void	do_free_img_objs(t_game *game, int limit)
 	}
 }
 
-static void	set_img_name(t_game *game, char **imgs_name, int len, int i)
+static void	set_img_name(t_game *game, char **imgs_name, int i)
 {
 	int	fd;
 
-	fd = open(ft_strnstr(imgs_name[i], "sprites", len), O_RDONLY);
+	fd = open(imgs_name[i], O_RDONLY);
 	if (fd != -1)
 	{
 		close(fd);
-		game->imgs[i].name = ft_strnstr(imgs_name[i], "sprites", len);
+		game->imgs[i].name = imgs_name[i];
 	}
 	else
 	{
 		free_stab(imgs_name);
 		do_free_img_objs(game, i);
+		free(game->imgs);
 		do_free_game(game, TRUE, FALSE, TRUE);
 		do_msg_exit("Opening or read-right issue with a .xpm image");
 	}
@@ -47,13 +48,13 @@ static void	set_img_object(t_game *game, char **imgs_name, int i)
 {
 	t_coords	size;
 
-	ft_printf("%s\n", game->imgs[i].name);
 	game->imgs[i].obj = mlx_xpm_file_to_image(game->mlxvar, game->imgs[i].name,
 		&(size.x), &(size.y));
 	if (game->imgs[i].obj == NULL)
 	{
 		free_stab(imgs_name);
 		do_free_img_objs(game, i);
+		free(game->imgs);
 		do_free_game(game, TRUE, FALSE, TRUE);
 		do_msg_exit("Malloc issue during an img creation from an .xpm file");
 	}
@@ -72,10 +73,11 @@ static void	set_imgs(t_game *game, char **imgs_name)
 		{
 			free_stab(imgs_name);
 			do_free_img_objs(game, i);
+			free(game->imgs);
 			do_free_game(game, TRUE, FALSE, TRUE);
-			do_msg_exit("the sprites's img has to end with the .xpm extention");
+			do_msg_exit("A sprites's img does't end up with the .xpm extention");
 		}
-		set_img_name(game, imgs_name, len, i);
+		set_img_name(game, imgs_name, i);
 		set_img_object(game, imgs_name, i);
 	}
 }
