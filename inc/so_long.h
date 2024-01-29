@@ -97,7 +97,8 @@ void		do_msg_exit(char *msg);
 void		set_window(t_game *game);
 
 /*
-* To complete...
+* Allocates game->imgs and init a name (char *) and an obj (t_img)
+* for each element of the game->imgs array 
 */
 void		init_imgs(t_game *game);
 
@@ -105,7 +106,7 @@ void		init_imgs(t_game *game);
 * Used to free the content of t_game type:
 * -freemlx == TRUE: mlxvar and win
 * -freemap == TRUE: map
-* -freeimgs == TRUE: imgs->img & ->name
+* -freeimgs == TRUE: imgs->img & ->name... then imgs
 */
 void		do_free_game(t_game *game, char freemlx,
 				char freeimgs, char freemap);

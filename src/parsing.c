@@ -31,23 +31,26 @@ static void	check_map_size(char *file_content)
 	t_coords	size;
 	int			i;
 
-	size.x = 0;
+	size = init_coords(0, 1);
 	while (file_content[size.x] && file_content[size.x] != '\n')
 		size.x++;
 	if (size.x == 0 || file_content[size.x] == '\0')
 	{
 		free(file_content);
-		do_msg_exit("The map isn't a rectangle or starts by a newline");
+		if (size.x == 0)
+			do_msg_exit("The map starts with a newline");
+		else
+			do_msg_exit("The map isn't a rectangle");
 	}
 	i = 0;
-	size.y = 0;
 	while (file_content[i])
 	{
-		if (file_content[i] == '\n' && ((i - size.y++) % size.x != 0))
+		if (file_content[i] == '\n' && (i != (size.y * size.x) + size.y - 1))
 		{
 			free(file_content);
 			do_msg_exit("The map isn't a rectangle");
 		}
+		size.y += file_content[i] == '\n';
 		i++;
 	}
 }
