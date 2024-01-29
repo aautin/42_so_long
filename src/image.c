@@ -49,7 +49,7 @@ static void	set_img_object(t_game *game, char **imgs_name, int i)
 	t_coords	size;
 
 	game->imgs[i].obj = mlx_xpm_file_to_image(game->mlxvar, game->imgs[i].name,
-		&(size.x), &(size.y));
+			&(size.x), &(size.y));
 	if (game->imgs[i].obj == NULL)
 	{
 		free_stab(imgs_name);
@@ -75,7 +75,7 @@ static void	set_imgs(t_game *game, char **imgs_name)
 			do_free_img_objs(game, i);
 			free(game->imgs);
 			do_free_game(game, TRUE, FALSE, TRUE);
-			do_msg_exit("A sprites's img does't end up with the .xpm extention");
+			do_msg_exit("A sprites's img does't end up with .xpm extention");
 		}
 		set_img_name(game, imgs_name, i);
 		set_img_object(game, imgs_name, i);

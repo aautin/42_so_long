@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:42:16 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/29 20:49:57 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/29 22:59:53 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@
 # ifndef IMGS
 #  define IMGS "Error\n"
 # endif
+
+# define ESC_KEY 65307
+# define A_KEY 97
+# define W_KEY 119
+# define S_KEY 115
+# define D_KEY 100
 
 # define TRUE 1
 # define FALSE 0
@@ -54,6 +60,9 @@ typedef struct s_game
 	t_image		*imgs;
 	t_xvar		*mlxvar;
 	void		*win;
+	int			moves_nb;
+	int			coins_nb;
+	t_coords	player_pos;
 }	t_game;
 
 /*
@@ -114,6 +123,11 @@ void		do_free_game(t_game *game, char freemlx,
 /*
 * To complete...
 */
-void	put_map(t_game *game);
+void		put_map(t_game *game);
+
+/*
+* To complete...
+*/
+void		set_events(t_game *game);
 
 #endif
