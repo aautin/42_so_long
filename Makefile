@@ -10,7 +10,7 @@ INC_LIB			:=	-L $(LIB_PATH) -lft
 MLX_TGZ			:=	mlx.tgz
 MLX_PATH		:=	mlx
 MLX_FILE		:=	libmlx.a
-MLX				:=	$(addprefix $(MLX)/, $(MLX_FILE))
+MLX				:=	$(addprefix $(MLX_PATH)/, $(MLX_FILE))
 INC_MLX			:=	-L $(MLX_PATH) -lmlx -lXext -lX11
 
 SRC_PATH		:=	src
@@ -26,9 +26,26 @@ SRC_FILES		:=	main.c			\
 					path_finding.c
 SRC				:=	$(addprefix $(SRC_PATH)/,$(SRC_FILES))
 
+SRC_PATH_BONUS	:=	src_bonus
+SRC_FILES_BONUS	:=	main.c			\
+					parsing.c		\
+					coords.c		\
+					utils.c			\
+					window.c		\
+					image.c			\
+					put_map.c		\
+					event.c			\
+					move.c			\
+					path_finding.c
+SRC_BONUS		:=	$(addprefix $(SRC_PATH_BONUS)/,$(SRC_FILES_BONUS))
+
 OBJ_PATH		:=	obj
 OBJ_FILES		:=	$(SRC_FILES:.c=.o)
 OBJ				:=	$(addprefix $(OBJ_PATH)/,$(OBJ_FILES))
+
+OBJ_PATH_BONUS	:=	obj_bonus
+OBJ_FILES_BONUS	:=	$(SRC_FILES_BONUS:.c=.o)
+OBJ_BONUS		:=	$(addprefix $(OBJ_PATH_BONUS)/,$(OBJ_FILES_BONUS))
 
 RM				:=	rm -f
 CC_FLGS			:=	cc -Wall -Werror -Wextra -g3
@@ -40,12 +57,18 @@ MACROS	:= -DSCR_LEN=$(LEN) -DSCR_WID=$(WID) -DIMGS="\$(IMGS)\"
 
 all				:	$(NAME)
 
-.PHONY			:	all clean fclean re
+.PHONY			:	all clean fclean re bonus
 
-$(NAME)			:	$(LIB) $(MLX_PATH) $(MLX) $(OBJ_PATH) $(OBJ)
+$(NAME)			:	$(LIB) $(MLX) $(OBJ_PATH) $(OBJ)
 					@sleep 0.2
 					@echo -n "$(GREEN)"
 					@$(CC_FLGS) $(OBJ) -o $(NAME) $(INC_LIB) $(INC_MLX) $(MACROS)
+					@echo $@ "has been created !$(NO_COLOR)"
+
+bonus			:	$(LIB) $(MLX_PATH) $(MLX) $(OBJ_PATH_BONUS) $(OBJ_BONUS)
+					@sleep 0.2
+					@echo -n "$(GREEN)"
+					@$(CC_FLGS) $(OBJ_BONUS) -o $(NAME) $(INC_LIB) $(INC_MLX) $(MACROS)
 					@echo $@ "has been created !$(NO_COLOR)"
 
 $(MLX)			:	$(MLX_PATH)
@@ -63,8 +86,15 @@ $(OBJ_PATH)/%.o	:	$(SRC_PATH)/%.c
 					@echo "$(BLUE)Compiling $@$(NO_COLOR)"
 					@$(CC_FLGS) -c $< -o $@ -I $(INC_PATH) $(MACROS)
 
+$(OBJ_PATH_BONUS)/%.o	:	$(SRC_PATH_BONUS)/%.c
+							@sleep 0.1
+							@echo "$(BLUE)Compiling $@$(NO_COLOR)"
+							@$(CC_FLGS) -c $< -o $@ -I $(INC_PATH) $(MACROS)
+
 $(OBJ_PATH)		:
 					@mkdir $@
+$(OBJ_PATH_BONUS)	:
+						@mkdir $@
 
 $(LIB)			:
 					@sleep 0.1
@@ -73,7 +103,7 @@ $(LIB)			:
 
 clean			:
 					@sleep 0.1
-					@$(RM) $(OBJ)
+					@$(RM) $(OBJ) $(OBJ_BONUS)
 					@echo "$(RED)Deleting objects files...$(NO_COLOR)"
 					@sleep 0.2
 					@echo "$(RED)Cleaning the libft folder...$(NO_COLOR)"
@@ -81,6 +111,7 @@ clean			:
 
 fclean			:	clean
 					@sleep 0.1
+					@rm -rf $(OBJ_PATH) $(OBJ_PATH_BONUS)
 					@$(RM) $(NAME) $(LIB)
 					@echo "$(RED)Deleting so_long and the libft.a...$(NO_COLOR)"
 					@sleep 0.2
