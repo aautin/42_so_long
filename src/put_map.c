@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put.c                                              :+:      :+:    :+:   */
+/*   put_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 20:40:44 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/29 20:48:35 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/30 01:33:32 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*get_img_keyword(char letter)
 		return ("pac_closed");
 }
 
-static void	*get_img_obj(t_game *game, char *keyword)
+void	*get_img_obj(t_game *game, char *keyword)
 {
 	int	i;
 	int	img_name_len;

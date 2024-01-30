@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:41:40 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/29 23:03:49 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/30 02:07:13 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int argc, char *argv[])
 		game.scr_size = init_coords(SCR_LEN, SCR_WID);
 		check_scr_map_compatibility(&game);
 		init_remaining_var(game.map, &(game.moves_nb),
-			&(game.coins_nb), &(game.player_pos));
+			&(game.coins_nb), &(game.player_i));
 		set_window(&game);
 		set_events(&game);
 		init_imgs(&game);

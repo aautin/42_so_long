@@ -22,6 +22,7 @@ SRC_FILES		:=	main.c			\
 					image.c			\
 					put_map.c		\
 					event.c			\
+					move.c			\
 					path_finding.c
 SRC				:=	$(addprefix $(SRC_PATH)/,$(SRC_FILES))
 

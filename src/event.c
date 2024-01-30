@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 22:41:38 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/29 23:02:37 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/30 02:06:03 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,13 @@ static int	do_key_pressed_event(int keycode, t_game *game)
 		exit(EXIT_SUCCESS);
 	}
 	if (keycode == A_KEY)
-		ft_printf("left move\n");
+		do_try_move(init_coords(-1, 0), game);
 	else if (keycode == W_KEY)
-		ft_printf("up move\n");
+		do_try_move(init_coords(0, -1), game);
 	else if (keycode == S_KEY)
-		ft_printf("down move\n");
+		do_try_move(init_coords(0, 1), game);
 	else if (keycode == D_KEY)
-		ft_printf("right move\n");
-	else
-		ft_printf("%d\n", keycode);
+		do_try_move(init_coords(1, 0), game);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:42:16 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/29 22:59:53 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/30 02:06:57 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_game
 	void		*win;
 	int			moves_nb;
 	int			coins_nb;
-	t_coords	player_pos;
+	t_coords	player_i;
 }	t_game;
 
 /*
@@ -123,11 +123,21 @@ void		do_free_game(t_game *game, char freemlx,
 /*
 * To complete...
 */
+void		*get_img_obj(t_game *game, char *keyword);
+
+/*
+* To complete...
+*/
 void		put_map(t_game *game);
 
 /*
 * To complete...
 */
 void		set_events(t_game *game);
+
+/*
+* To complete...
+*/
+void		do_try_move(t_coords move, t_game *game);
 
 #endif
