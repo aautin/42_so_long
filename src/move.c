@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 00:58:20 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/30 02:19:33 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/30 04:00:21 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	do_move(t_coords mv, t_game *game)
 		game->player_i.x * 32, game->player_i.y * 32);
 	mlx_put_image_to_window(game->mlxvar, game->win, get_img_obj(game, "close"),
 		(game->player_i.x + mv.x) * 32, (game->player_i.y + mv.y) * 32);
-	game->player_i = init_coords(game->player_i.x + mv.x,
+	game->player_i = get_coords(game->player_i.x + mv.x,
 			game->player_i.y + mv.y);
 }
 

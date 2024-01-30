@@ -34,7 +34,7 @@ static void	check_scr_map_compatibility(t_game *game)
 	}
 }
 
-static void	init_remaining_var(char **map, int *mv_nb, int *c_nb, t_coords *p_i)
+static void	set_remaining_vars(char **map, int *mv_nb, int *c_nb, t_coords *p_i)
 {
 	t_coords	i;
 
@@ -46,7 +46,7 @@ static void	init_remaining_var(char **map, int *mv_nb, int *c_nb, t_coords *p_i)
 		while (map[i.y][i.x])
 		{
 			if (map[i.y][i.x] == 'P')
-				*p_i = init_coords(i.x, i.y);
+				*p_i = get_coords(i.x, i.y);
 			else if (map[i.y][i.x] == 'C')
 				*c_nb += 1;
 			i.x++;
@@ -64,13 +64,13 @@ int	main(int argc, char *argv[])
 	{
 		game.map = get_map_from_file(argv[1]);
 		game.map_size = get_map_size(game.map);
-		game.scr_size = init_coords(SCR_LEN, SCR_WID);
+		game.scr_size = get_coords(SCR_LEN, SCR_WID);
 		check_scr_map_compatibility(&game);
-		init_remaining_var(game.map, &(game.moves_nb),
+		set_remaining_vars(game.map, &(game.moves_nb),
 			&(game.coins_nb), &(game.player_i));
 		set_window(&game);
 		set_events(&game);
-		init_imgs(&game);
+		set_imgs(&game);
 		put_map(&game);
 		mlx_loop(game.mlxvar);
 		do_free_game(&game, TRUE, TRUE, TRUE);

@@ -18,7 +18,7 @@ void	set_window(t_game *game)
 	if (game->mlxvar == NULL)
 	{
 		free_stab(game->map);
-		do_msg_exit("Mlx's init issue");
+		do_msg_exit("Mlx's set issue");
 	}
 	game->win = mlx_new_window(game->mlxvar, game->map_size.x * 32,
 			game->map_size.y * 32, "WIN");
@@ -27,6 +27,6 @@ void	set_window(t_game *game)
 		mlx_destroy_display(game->mlxvar);
 		free(game->mlxvar);
 		free_stab(game->map);
-		do_msg_exit("Window's init issue");
+		do_msg_exit("Window's set issue");
 	}
 }

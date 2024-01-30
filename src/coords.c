@@ -16,7 +16,7 @@ t_coords	get_map_size(char **map)
 {
 	t_coords	size;
 
-	size = init_coords(0, 0);
+	size = get_coords(0, 0);
 	while (map[size.y])
 		size.y++;
 	while (map[0][size.x])
@@ -24,11 +24,11 @@ t_coords	get_map_size(char **map)
 	return (size);
 }
 
-t_coords	init_coords(int x, int y)
+t_coords	get_coords(int x, int y)
 {
-	t_coords	coords;
+	t_coords	i;
 
-	coords.x = x;
-	coords.y = y;
-	return (coords);
+	i.x = x;
+	i.y = y;
+	return (i);
 }

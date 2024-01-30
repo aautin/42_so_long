@@ -60,7 +60,7 @@ static void	set_img_object(t_game *game, char **imgs_name, int i)
 	}
 }
 
-static void	set_imgs(t_game *game, char **imgs_name)
+static void	do_imgs(t_game *game, char **imgs_name)
 {
 	int	i;
 	int	len;
@@ -82,7 +82,7 @@ static void	set_imgs(t_game *game, char **imgs_name)
 	}
 }
 
-void	init_imgs(t_game *game)
+void	set_imgs(t_game *game)
 {
 	char	**imgs_name;
 
@@ -102,6 +102,6 @@ void	init_imgs(t_game *game)
 		do_free_game(game, TRUE, FALSE, TRUE);
 		do_msg_exit("Malloc issue");
 	}
-	set_imgs(game, imgs_name);
+	do_imgs(game, imgs_name);
 	free(imgs_name);
 }

@@ -31,7 +31,7 @@ static void	check_map_size(char *file_content)
 	t_coords	size;
 	int			i;
 
-	size = init_coords(0, 1);
+	size = get_coords(0, 1);
 	while (file_content[size.x] && file_content[size.x] != '\n')
 		size.x++;
 	if (size.x == 0 || file_content[size.x] == '\0')
@@ -118,7 +118,7 @@ char	**get_map_from_file(char *mapfile)
 		do_msg_exit("Read file then got nothing: malloc or empty file issue");
 	map = get_map(file_content);
 	size = get_map_size(map);
-	i = init_coords(0, 0);
+	i = get_coords(0, 0);
 	while (i.x < (size.x - 1) || i.y < (size.y - 1))
 	{
 		if (map[0][i.x] != '1' || map[size.y - 1][i.x] != '1'

@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:42:16 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/30 02:06:57 by aautin           ###   ########.fr       */
+/*   Updated: 2024/01/30 04:00:14 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,39 @@
 # define FAIL 0
 # define EOT 3
 
+/*
+* @brief A two-dimensional index
+
+* @note
+* int x;	int y;
+*/
 typedef struct s_coords
 {
 	int	x;
 	int	y;
 }	t_coords;
 
+/*
+* @brief An image object with its name (its relative path to find it).
+
+* @note
+* t_img *obj;	char *name;
+*/
 typedef struct s_image
 {
 	t_img	*obj;
 	char	*name;
 }	t_image;
 
+/*
+* @brief The main typedef struct of the program (all the game needs)
+
+* @note
+* t_coords scr_size; t_coords	map_size; char **map;
+* int imgs_nb; t_image *imgs; t_xvar *mlxvar;
+* void *win; int moves_nb; int coins_nb;
+* t_coords player_i;
+*/
 typedef struct s_game
 {
 	t_coords	scr_size;
@@ -66,77 +87,126 @@ typedef struct s_game
 }	t_game;
 
 /*
-* Takes as a parameter a map's path/to/file, reads it and returns a
-* dble array of it no erros happens and the map's content is right.
-* Otherwise, an error_msg is printed and exit(EXIT_FAILURE) executed.
+* @brief Takes a file name, reads and turns its content in a char **
+* (split on \\n as a separator).
+* Apply a strong parsing based on the map format's rules. 
+
+* @param mapfile Relative path of a file to read (the map).
+
+* @return The content as a char **, exit earlier if an error happens
+* (or parsing redflag).
 */
 char		**get_map_from_file(char *mapfile);
 
 /*
-* Browses into a map and spreads a trace on each of the blocks
-* accessible to the player (E coords). Then checks if every C and E
-* are surrounded by a trace on the left, right, top or bottom.
-* If not, free the map and exit(EXIT_FAILURE). 
+* @brief Check all the path finding points the map has to respect.
+
+* @param map Content composed of 1, 0, E, C, and P.
+* Respecting the so_long's subject.
+
+* @return Nothing but free the map and exit(EXIT_FAILURE)
+* the program if a test results in a redflag.
 */
 void		check_map(char **map);
 
 /*
-* Counts the number of char* until the NULL element (size.y) and
-* counts the number of char in the 1st char* until the \0 (size.x)
-* Returns the t_coords result which is the size of the map given.
+* @brief Provides a char ** size (x and y) whose content is shape
+* as a rectangle.
+
+* @param map Content composed as a rectangle of 1, 0, E, C, and P.
+* Respecting the so_long's subject.
+
+* @return A typedef struct which contains int y (number of char *)
+* and int x (number of char in the first char *).
 */
 t_coords	get_map_size(char **map);
 
 /*
-* Takes two integers (x, y) and assigns them to the t_coords that the
-* functions created, then returns the t_coords.
+* @brief Provides a t_coords whose two integers are respectively
+* equal to the parameters x and y.
+
+* @return A t_coords which contains : int x, int y.
 */
-t_coords	init_coords(int x, int y);
+t_coords	get_coords(int x, int y);
 
 /*
-* Prints Error\n followed by the msg param and a newline
-* Then it exits with the EXIT_FAILURE status.
+* @brief Prints "Error\\n" and a message followed by a newline.
+
+* @param msg A string which specify the error case.
+
+* @return Nothing : it exits with the EXIT_FAILURE status (equal to 1).
 */
 void		do_msg_exit(char *msg);
 
 /*
-* Inits the game->mlxvar and game->win variables. If an init goes
-* wrong, frees malloc vars of t_game and do_msg_exit(PERSO MSG)
+* @brief Sets the game->mlxvar and game->win variables. 
+
+* @param game The main typedef struct of this program.
+
+* @return Nothing but it might exit earlier (by the do_msg_exit function)
+* if an sys-error happens.
 */
 void		set_window(t_game *game);
 
 /*
-* Allocates game->imgs and init a name (char *) and an obj (t_img)
-* for each element of the game->imgs array 
+* @brief Allocates game->imgs and set a name (char *) and an obj (t_img)
+* for each element of the game->imgs array
+
+* @param game The main typedef struct of this program.
+
+* @return Nothing but it might exit earlier (by the do_msg_exit function)
+* if an sys-error happens.
 */
-void		init_imgs(t_game *game);
+void		set_imgs(t_game *game);
 
 /*
-* Used to free the content of t_game type:
-* -freemlx == TRUE: mlxvar and win
-* -freemap == TRUE: map
-* -freeimgs == TRUE: imgs->img & ->name... then imgs
+* @brief Used to free the content of t_game typedef before to left the program.
+
+* @param freemlx Flag conditionning the free and/or destruction of mlxvar
+* and win.
+* @param freemap Flag conditionning the free and/or destruction of map.
+* @param freeimgs Flag conditionning the free and/or destruction of imgs.
 */
 void		do_free_game(t_game *game, char freemlx,
 				char freeimgs, char freemap);
 
 /*
-* To complete...
+* @brief Browse into the imgs array and select the img containing
+* the keyword in its name.
+
+* @param game The main typedef struct of this program.
+* @param keyword A meaningfull part of the relative path of an img.
+
+* @returns The actual img->obj, but free the game structure
+* and do_msg_and_exit if no picture has been found.
 */
 void		*get_img_obj(t_game *game, char *keyword);
 
 /*
-* To complete...
+* @brief Uses the imgs created and browse in a map to print every char
+* as its img equivalent in the game->window. 
+
+* @param game The main typedef struct of this program.
 */
 void		put_map(t_game *game);
 
 /*
-* To complete...
+* @brief Set the hooks of the game->mlx which causes something in
+* the program (as a keypress or a buttonclicked).
+
+* @param game The main typedef struct of this program.
+
+* @note AWSD as gameplay events. Top-right window's corner cross and ESC_key
+* as closing program buttons.
 */
 void		set_events(t_game *game);
 
 /*
-* To complete...
+* @brief If a key_event is trigger, this function verifies if this event
+* can happens depending on the player position (can he moves on this way ?).
+
+* @param move The double-dimension direction the player try to go on.
+* @param game The main typedef struct of this program.
 */
 void		do_try_move(t_coords move, t_game *game);
 

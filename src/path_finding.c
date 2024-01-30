@@ -16,7 +16,7 @@ static int	are_paths_rights(char **map)
 {
 	t_coords	i;
 
-	i = init_coords(0, 0);
+	i = get_coords(0, 0);
 	while (map[++i.y])
 	{
 		i.x = 0;
@@ -103,7 +103,7 @@ static void	do_path_finding(char **map)
 	while (spread == TRUE)
 	{
 		spread = FALSE;
-		i = init_coords(0, 0);
+		i = get_coords(0, 0);
 		while (map[++i.y])
 		{
 			i.x = 0;

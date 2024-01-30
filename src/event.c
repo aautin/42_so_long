@@ -20,13 +20,13 @@ static int	do_key_pressed_event(int keycode, t_game *game)
 		exit(EXIT_SUCCESS);
 	}
 	if (keycode == A_KEY)
-		do_try_move(init_coords(-1, 0), game);
+		do_try_move(get_coords(-1, 0), game);
 	else if (keycode == W_KEY)
-		do_try_move(init_coords(0, -1), game);
+		do_try_move(get_coords(0, -1), game);
 	else if (keycode == S_KEY)
-		do_try_move(init_coords(0, 1), game);
+		do_try_move(get_coords(0, 1), game);
 	else if (keycode == D_KEY)
-		do_try_move(init_coords(1, 0), game);
+		do_try_move(get_coords(1, 0), game);
 	return (0);
 }
 
