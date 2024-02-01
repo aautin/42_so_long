@@ -76,6 +76,7 @@ typedef struct s_game
 {
 	t_coords	scr_size;
 	t_coords	map_size;
+	t_coords	win_size;
 	char		**map;
 	int			imgs_nb;
 	t_image		*imgs;
@@ -209,5 +210,15 @@ void		set_events(t_game *game);
 * @param game The main typedef struct of this program.
 */
 void		do_try_move(t_coords move, t_game *game);
+
+/*
+* @brief Print the game->moves_nb in the right-down corner. The number printed
+* is made of images putting on the window.
+
+* @param game The main typedef struct of this program.
+* @param moves_nb The number of player moves.
+* @param x_pad The padding between the window's right edge and the moves_nb.
+*/
+void		put_move(t_game *game, int moves_nb, int x_pad);
 
 #endif

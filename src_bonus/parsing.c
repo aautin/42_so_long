@@ -91,10 +91,10 @@ static char	**get_map(char *file_content)
 	i = -1;
 	while (file_content[++i])
 	{
-		if (ft_strchr("10PCE\n", file_content[i]) == False)
+		if (ft_strchr("10PCEG\n", file_content[i]) == False)
 		{
 			free(file_content);
-			do_msg_exit("Map contains invalid character: only 10PCE allowed");
+			do_msg_exit("Map contains invalid character: only 10PCEG allowed");
 		}
 	}
 	check_game_elements(file_content);

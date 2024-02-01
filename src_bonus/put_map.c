@@ -22,6 +22,8 @@ static char	*get_img_keyword(char letter)
 		return ("exit");
 	if (letter == 'C')
 		return ("coin");
+	if (letter == 'G')
+		return ("ghost");
 	else
 		return ("pac_closed");
 }
@@ -48,6 +50,7 @@ void	put_map(t_game *game)
 {
 	t_coords	i;
 
+	put_move(game, game->moves_nb, 0);
 	i.y = 0;
 	while (game->map[i.y])
 	{

@@ -20,8 +20,10 @@ void	set_window(t_game *game)
 		free_stab(game->map);
 		do_msg_exit("Mlx's set issue");
 	}
-	game->win = mlx_new_window(game->mlxvar, game->map_size.x * 32,
-			game->map_size.y * 32, "WIN");
+	game->win_size = get_coords(game->map_size.x * 32,
+			game->map_size.y * 32 + 32);
+	game->win = mlx_new_window(game->mlxvar, game->win_size.x,
+			game->win_size.y, "WIN");
 	if (game->win == NULL)
 	{
 		mlx_destroy_display(game->mlxvar);
