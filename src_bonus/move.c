@@ -71,6 +71,7 @@ static void	do_move(t_coords mv, t_game *game)
 	game->player_i = get_coords(game->player_i.x + mv.x,
 			game->player_i.y + mv.y);
 	put_move(game, game->moves_nb, 0);
+	try_move_ghosts(game);
 }
 
 void	do_try_move(t_coords mv, t_game *game)

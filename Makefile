@@ -29,6 +29,7 @@ SRC				:=	$(addprefix $(SRC_PATH)/,$(SRC_FILES))
 SRC_PATH_BONUS	:=	src_bonus
 SRC_FILES_BONUS	:=	main.c			\
 					parsing.c		\
+					move_ghosts.c	\
 					coords.c		\
 					utils.c			\
 					window.c		\
