@@ -15,9 +15,9 @@
 static void	move_ghost(t_game *game, t_coords i, int move)
 {
 	mlx_put_image_to_window(game->mlxvar, game->win, get_img_obj(game, "ghost"),
-			32 * (i.x + move), 32 * i.y);
+		32 * (i.x + move), 32 * i.y);
 	mlx_put_image_to_window(game->mlxvar, game->win, get_img_obj(game, "empty"),
-			32 * i.x, 32 * i.y);
+		32 * i.x, 32 * i.y);
 	game->map[i.y][i.x] = '0';
 	game->map[i.y][i.x + move] = 'G';
 }

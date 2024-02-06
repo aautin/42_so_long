@@ -221,7 +221,6 @@ void		do_try_move(t_coords move, t_game *game);
 */
 void		put_move(t_game *game, int moves_nb, int x_pad);
 
-
 /*
 * @brief A bonus function.
 */

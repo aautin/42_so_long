@@ -94,6 +94,7 @@ void	do_try_move(t_coords mv, t_game *game)
 		{
 			if (game->coins_nb == 0)
 			{
+				game->moves_nb++;
 				ft_printf("Party finished in %d moves!\n", game->moves_nb);
 				do_free_game(game, TRUE, TRUE, TRUE);
 				exit(EXIT_SUCCESS);
