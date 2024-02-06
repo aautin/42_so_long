@@ -119,16 +119,17 @@ char	**get_map_from_file(char *mapfile)
 	map = get_map(file_content);
 	size = get_map_size(map);
 	i = get_coords(0, 0);
-	while (i.x < (size.x - 1) || i.y < (size.y - 1))
+	while (i.x < size.x || i.y < size.y - 1)
 	{
-		if (map[0][i.x] != '1' || map[size.y - 1][i.x] != '1'
-			|| map[i.y][0] != '1' || map[i.y][size.x - 1] != '1')
+		if ((map[0][i.x] != '1' && map[0][i.x] != 0)
+			|| (map[size.y - 1][i.x] != '1' && map[size.y - 1][i.x] != 0)
+			|| (map[i.y][0] != '1' && map[i.y][0] != 0)
+			|| (map[i.y][size.x - 1] != '1' && map[i.y][size.x - 1] != 0))
 		{
 			free_stab(map);
 			do_msg_exit("Map not closed by a rectangle of 1 characters");
 		}
-		i.x += i.x < (size.x - 1);
-		i.y += i.y < (size.y - 1);
+		i = get_coords(i.x + (i.x < size.x), i.y + (i.y < size.y - 1));
 	}
 	return (check_map(map), map);
 }

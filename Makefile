@@ -53,7 +53,7 @@ CC_FLGS			:=	cc -Wall -Werror -Wextra -g3
 
 LEN		:= $(shell xdpyinfo | grep dim | awk '{print $$2}' | awk -Fx '{print $$1}')
 WID		:= $(shell xdpyinfo | grep dim | awk '{print $$2}' | awk -Fx '{print $$2}')
-IMGS	:= "$(shell readlink -f sprites/* sprites/*/* | grep .xpm | awk -Fso_long/ '{print $$2}')"
+IMGS	:= "$(shell find * | grep .xpm | grep sprites)"
 MACROS	:= -DSCR_LEN=$(LEN) -DSCR_WID=$(WID) -DIMGS="\$(IMGS)\"
 
 all				:	$(NAME)
