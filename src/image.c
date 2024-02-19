@@ -86,6 +86,7 @@ void	set_imgs(t_game *game)
 {
 	char	**imgs_name;
 
+	ft_printf("%s\n", IMGS);
 	imgs_name = ft_split(IMGS, ' ');
 	if (imgs_name == NULL)
 	{

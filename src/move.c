@@ -18,8 +18,9 @@ static void	do_move(t_coords mv, t_game *game)
 		game->coins_nb--;
 	game->map[game->player_i.y + mv.y][game->player_i.x + mv.x] = 'P';
 	game->map[game->player_i.y][game->player_i.x] = '0';
-	mlx_put_image_to_window(game->mlxvar, game->win, get_img_obj(game, "empty"),
-		game->player_i.x * 32, game->player_i.y * 32);
+	mlx_put_image_to_window(game->mlxvar, game->win,
+		get_img_obj(game, "sprites/empty"), game->player_i.x * 32,
+		game->player_i.y * 32);
 	mlx_put_image_to_window(game->mlxvar, game->win, get_img_obj(game, "close"),
 		(game->player_i.x + mv.x) * 32, (game->player_i.y + mv.y) * 32);
 	game->player_i = get_coords(game->player_i.x + mv.x,
