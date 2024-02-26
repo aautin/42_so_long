@@ -61,34 +61,28 @@ all				:	$(NAME)
 .PHONY			:	all clean fclean re bonus
 
 $(NAME)			:	$(LIB) $(MLX) $(OBJ_PATH) $(OBJ)
-					@sleep 0.2
 					@echo -n "$(GREEN)"
 					@$(CC_FLGS) $(OBJ) -o $(NAME) $(INC_LIB) $(INC_MLX) $(MACROS)
 					@echo $@ "has been created !$(NO_COLOR)"
 
 bonus			:	$(LIB) $(MLX_PATH) $(MLX) $(OBJ_PATH_BONUS) $(OBJ_BONUS)
-					@sleep 0.2
 					@echo -n "$(GREEN)"
 					@$(CC_FLGS) $(OBJ_BONUS) -o $(NAME) $(INC_LIB) $(INC_MLX) $(MACROS)
 					@echo $@ "has been created !$(NO_COLOR)"
 
 $(MLX)			:	$(MLX_PATH)
-					@sleep 0.1
 					@echo "$(BLUE)Compiling the mlx...$(NO_COLOR)"
 					@make --no-print-directory --silent -C mlx
 
 $(MLX_PATH)		:	$(MLX_TGZ)
-					@sleep 0.1
 					@echo "$(YELLOW)Extracting the mlx, creating the mlx...$(NO_COLOR)"
 					@tar -x -f $(MLX_TGZ) && mv minilibx-linux $(MLX_PATH)
 
 $(OBJ_PATH)/%.o	:	$(SRC_PATH)/%.c
-					@sleep 0.1
 					@echo "$(BLUE)Compiling $@$(NO_COLOR)"
 					@$(CC_FLGS) -c $< -o $@ -I $(INC_PATH) $(MACROS)
 
 $(OBJ_PATH_BONUS)/%.o	:	$(SRC_PATH_BONUS)/%.c
-							@sleep 0.1
 							@echo "$(BLUE)Compiling $@$(NO_COLOR)"
 							@$(CC_FLGS) -c $< -o $@ -I $(INC_PATH) $(MACROS)
 
@@ -98,27 +92,21 @@ $(OBJ_PATH_BONUS)	:
 						@mkdir $@
 
 $(LIB)			:
-					@sleep 0.1
 					@make --no-print-directory -C libft
 					@echo "$(YELLOW)Compiling the libft...$(NO_COLOR)"
 
 clean			:
-					@sleep 0.1
 					@$(RM) $(OBJ) $(OBJ_BONUS)
 					@echo "$(RED)Deleting objects files...$(NO_COLOR)"
-					@sleep 0.2
 					@echo "$(RED)Cleaning the libft folder...$(NO_COLOR)"
 					@make clean --no-print-directory -C libft
 
 fclean			:	clean
-					@sleep 0.1
 					@rm -rf $(OBJ_PATH) $(OBJ_PATH_BONUS)
 					@$(RM) $(NAME) $(LIB)
 					@echo "$(RED)Deleting so_long and the libft.a...$(NO_COLOR)"
-					@sleep 0.2
 					@$(RM) -r $(MLX_PATH)
 					@echo "$(RED)Deleting the mlx folder...$(NO_COLOR)"
-					@sleep 0.3
 
 re				:	fclean all
 

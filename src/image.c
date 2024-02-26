@@ -6,7 +6,7 @@
 /*   By: aautin <aautin@student.42.fr >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 14:18:45 by aautin            #+#    #+#             */
-/*   Updated: 2024/01/27 17:08:40 by aautin           ###   ########.fr       */
+/*   Updated: 2024/02/26 18:55:37 by aautin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	set_imgs(t_game *game)
 {
 	char	**imgs_name;
 
-	ft_printf("%s\n", IMGS);
 	imgs_name = ft_split(IMGS, ' ');
 	if (imgs_name == NULL)
 	{
